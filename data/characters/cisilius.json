@@ -2,11 +2,13 @@
   "Typ": "character",
   "ID": "cisilius",
   "Name": "Cisilius Hexandor von Gryffinbrygg",
-  "Tags": [],
   "Rolle": "recurring",
-  "Titel": [
-    "Magister Viatores Puniniensis"
-  ],
+  "Titel": ["Magister Viatores Puniniensis"],
+  "Tags": {
+    "Arcs": ["Liga der Magier"],
+    "Orte": ["Honingen", "Punin", "Lowangen"],
+    "Weitere": ["Magier"]
+  },
   "Profession": "Graumagier",
   "Geschlecht": "m",
   "Geburtsjahr": 968,
@@ -14,8 +16,6 @@
     "char_cisilius.jpg"
   ],
   "Kampagnen": ["kessel"],
-  "Arcs": ["Liga der Magier"],
-  "Orte": ["Honingen", "Punin", "Lowangen"],
   "Text": "Cisilius lehrte lange Jahrzehnte an der Akademie zu Punin bis ihn ein böser Streich zu Erkenntnis brachte, dass er den Draht zur heutigen Jugend verloren hat. Daraufhin brach er zum ersten Mal wirklich in die Welt außerhalb der heimischen Mauern auf. Da er seit einem misslungenen Experiment sehr vergesslich geworden ist hat niemandem Bescheid gesagt und überdies noch seinen Zauberstab vergessen. Nun schließt er sich Abenteuergruppen an, um zu verstehen, wie junge Menschen wirklich ticken.",
   "Inventar": {
     "Zauberstab": 1,

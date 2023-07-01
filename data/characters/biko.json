@@ -2,9 +2,11 @@
   "Typ": "character",
   "ID": "biko",
   "Name": "Biko",
-  "Tags": [
-    "honingen"
-  ],
+  "Tags": {
+    "Arcs": [],
+    "Orte": ["Honingen", "Galebfurt"],
+    "Weitere": []
+  },
   "Rolle": "recurring",
   "Titel": [],
   "Profession": "Bettler",
@@ -14,8 +16,6 @@
     "char_biko.png"
   ],
   "Kampagnen": ["abilacht", "zkin"],
-  "Arcs": [],
-  "Orte": ["Honingen", "Galebfurt"],
   "Text": "Biko, der Bettler, lebt in Honingen auf der Straße. Er verfügt ohne es selbst zu wissen über die Gabe der intuitiven Magie und liest manchmal die Gedanken von Passanten, wodurch er wertvolle Informationen aufschnappen kann, aber auch unnheimlich wirkt, wenn er Menschen auf Dinge anspricht, von denen er eigentlich nichts wissen dürfte.\nEr kennt das Loch von Galebfurt, wo er seiner Hinrichtung nur knapp entrinnen konnte.",
   "Inventar": {
   },

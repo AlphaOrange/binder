@@ -2,7 +2,11 @@
   "Typ": "character",
   "ID": "baronjalosch",
   "Name": "Jalosch von Gernebruch",
-  "Tags": [],
+  "Tags": {
+    "Arcs": [],
+    "Orte": ["Gernebruch", "Galebfurt", "Trappenfurt"],
+    "Weitere": []
+  },
   "Rolle": "recurring",
   "Titel": [
     "Baron"
@@ -14,8 +18,6 @@
     "char_Baron.png"
   ],
   "Kampagnen": ["dasloch"],
-  "Arcs": [],
-  "Orte": ["Gernebruch", "Galebfurt", "Trappenfurt"],
   "Text": "Der Baron verfügt über das Dorf Gernebruch, das von seinem Vater Jarolan von Gernebruch gewaltsam aus der Baronie Trappenfurten erobert wurde. Er weiß vom Loch der Verdammten und hat 1020 dessen Wiederöffnung selbst angeordnet, als er einen politischen Widersacher hinrichten ließ.",
   "Inventar": {
   },

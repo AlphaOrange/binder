@@ -2,7 +2,11 @@
   "Typ": "character",
   "ID": "morena",
   "Name": "Morena Mangold",
-  "Tags": [],
+  "Tags": {
+    "Arcs": [],
+    "Orte": ["Galebfurt"],
+    "Weitere": []
+  },
   "Rolle": "once",
   "Titel": [],
   "Profession": "Söldnerin",
@@ -15,8 +19,6 @@
     "char_Morena2.png"
   ],
   "Kampagnen": ["dasloch"],
-  "Arcs": [],
-  "Orte": ["Galebfurt"],
   "Text": "Eine Söldnerin aus der freien Stadt Lowangen, die sich in zahlreichen Kämpfen gegen die Orks bewährte. Dabei fiel allerdings ihr Blutrausch immer wieder zum Problem, in dem sie außerdem die Leichen ihrer Feinde schändet und deren Heimat plündert. Nachdem ihr eine schwere Niederlage gegen die Ork angehängt wurde, zog sie nach Süden und diente als Söldnerin, wobei sie ihre Auftraggeber selten genau prüfte. So nahm sie ohne dies genau zu wissen, an einem Raub an einer kaiserlichen Warenkolonne zur Akademie teil, wo sie Schmuck und ein mächtiges Artefakt entwendete und floh anschließend verletzt nach Galebfurt. Dort starb sie an ihren Wunden und wurde ins Loch der Verdammten geworfen. Der Nekromant Tann holte sie als Zombie zurück.",
   "Inventar": {
   },

@@ -2,7 +2,11 @@
   "Typ": "character",
   "ID": "nelda",
   "Name": "Nelda Rappenstein",
-  "Tags": [],
+  "Tags": {
+    "Arcs": [],
+    "Orte": ["Galebfurt"],
+    "Weitere": []
+  },
   "Rolle": "once",
   "Titel": [],
   "Profession": "Söldnerin",
@@ -12,8 +16,6 @@
     "char_Nelda.png"
   ],
   "Kampagnen": ["dasloch"],
-  "Arcs": [],
-  "Orte": ["Galebfurt"],
   "Text": "Fing als Rattenfängerin für die verschiedenen Siedlungen des Barons an, wurde dann aber in Galebfurt sesshaft, weil sie sich trickreich im Kampf gegen die Ghule erwies. Heute steht sie der Gernebrucher Ghulgarde vor, die aus ihr und zwei Mitstreitern besteht.",
   "Inventar": {
   },

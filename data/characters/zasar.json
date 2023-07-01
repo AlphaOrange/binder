@@ -2,7 +2,11 @@
   "Typ": "character",
   "ID": "zasar",
   "Name": "Zasar Caradir",
-  "Tags": ["Wissen"],
+  "Tags": {
+    "Arcs": ["Zasar"],
+    "Orte": ["Gareth", "Maraskan", "Selem", "Vinsalt"],
+    "Weitere": ["Wissen"]
+  },
   "Rolle": "recurring",
   "Titel": [],
   "Profession": "Archäologe",
@@ -12,8 +16,6 @@
     "char_Zasar.png"
   ],
   "Kampagnen": ["dschungelpfade", "zkin"],
-  "Arcs": ["Zasar"],
-  "Orte": ["Gareth", "Maraskan", "Selem", "Vinsalt"],
   "Text": "Entdecker aus Gareth, der unlängst durch einen Gestaltwandler ersetzt wurde, den er versehentlich aus Alt-Belhanka befreite. Dieser ist seither auf der Jagd nach den vier Iribaarsspiegeln.",
   "Inventar": {
   },

@@ -2,9 +2,11 @@
   "Typ": "character",
   "ID": "gustavus",
   "Name": "Gustavus Eibenfeld",
-  "Tags": [
-    "gareth"
-  ],
+  "Tags": {
+    "Arcs": ["Zasar"],
+    "Orte": ["Gareth", "Honingen"],
+    "Weitere": []
+  },
   "Rolle": "recurring",
   "Titel": [],
   "Profession": "Archivar",
@@ -14,8 +16,6 @@
     "char_Gustavus.png"
   ],
   "Kampagnen": ["dschungelpfade", "zkin", "dasloch"],
-  "Arcs": ["Zasar"],
-  "Orte": ["Gareth", "Honingen"],
   "Text": "Archivar der Akademie Stab und Schwert zu Gareth. Er hat eine Passion für Magiegeschichte und mächtige Artefakte, aber die meisten Akademiemagier interessieren sich nicht dafür, weshalb er oft mit Helden von außerhalb arbeitet.",
   "Inventar": {
   },

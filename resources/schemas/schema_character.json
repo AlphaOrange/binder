@@ -4,7 +4,7 @@
   "description": "A character description file for binder",
   "type": "object",
   "additionalProperties": false,
-  "required": ["Typ","ID", "Name", "Tags", "Rolle", "Titel", "Profession", "Geschlecht", "Geburtsjahr", "Bilder", "Kampagnen", "Arcs", "Orte", "Text", "Inventar", "Spezies", "Sprachen", "Schriften", "Stats", "Vorteile", "Nachteile", "Sonderfertigkeiten", "Sonderregeln"],
+  "required": ["Typ","ID", "Name", "Tags", "Rolle", "Titel", "Profession", "Geschlecht", "Geburtsjahr", "Bilder", "Kampagnen", "Text", "Inventar", "Spezies", "Sprachen", "Schriften", "Stats", "Vorteile", "Nachteile", "Sonderfertigkeiten", "Sonderregeln"],
   "properties": {
     "Typ": {
       "type": "string"
@@ -17,10 +17,23 @@
       "type": "string"
     },
     "Tags": {
-      "type": "array",
-      "items": {
-        "type": "string",
-        "pattern": "^[a-zA-ZäöüÄÖÜß\\-]+$"
+      "type": "object",
+      "required": ["Weitere"],
+      "properties": {
+        "Weitere": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "patternProperties": {
+        "^[A-ZÄÖÜ][A-ZÄÖÜa-zäöüß]*$": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
       }
     },
     "Rolle": {
@@ -58,18 +71,6 @@
       "items": {
         "type": "string",
         "pattern": "^[a-zäöüß]+$"
-      }
-    },
-    "Arcs": {
-      "type": "array",
-      "items": {
-        "type": "string"
-      }
-    },
-    "Orte": {
-      "type": "array",
-      "items": {
-        "type": "string"
       }
     },
     "Text": {

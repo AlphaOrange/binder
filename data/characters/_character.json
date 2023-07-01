@@ -4,15 +4,15 @@
   "Name": "",
   "Tags": [],
   "Rolle": "primary/recurring/once/mention",
-  "Titel": [],
+  "Titel": {
+    "Weitere": []
+  },
   "Profession": "",
   "Geschlecht": "m/w",
   "Geburtsjahr": 0,
   "Todesjahr": null,
   "Bilder": [],
   "Kampagnen": [],
-  "Arcs": [],
-  "Orte": [],
   "Text": "",
   "Inventar": {
   },

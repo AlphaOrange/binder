@@ -2,7 +2,11 @@
   "Typ": "character",
   "ID": "wolfram",
   "Name": "Wolfram Silberschmitt",
-  "Tags": [],
+  "Tags": {
+    "Arcs": [],
+    "Orte": ["Honingen"],
+    "Weitere": []
+  },
   "Rolle": "recurring",
   "Titel": [],
   "Profession": "Alchemist",
@@ -12,8 +16,6 @@
     "char_Wolfram.png"
   ],
   "Kampagnen": ["zkin", "dasloch"],
-  "Arcs": [],
-  "Orte": ["Honingen"],
   "Text": "Ein Alchemist mit unzähligen Verbindungen in Alchemistenkreise. Seine Neugier hat gesiegt, als er sich von Minverva bei der Abenteuerergilde anheuern ließ, jedoch merkte er schnell, dass er seine Zeit viel lieber im Labor oder auf Kongressen verbringt als sein Leben in irgendwelchen verfallenen Tempeln zu verbringen. Wenn er nicht gerade unterwegs ist, im sich mit Collegae auszutauschen ist er also in seinem Labor zu finden.",
   "Inventar": {
   },
