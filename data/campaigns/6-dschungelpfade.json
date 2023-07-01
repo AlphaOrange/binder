@@ -2,10 +2,10 @@
   "Typ": "campaign",
   "ID": "dschungelpfade",
   "Name": "Dschungelpfade",
-  "Tags": [
-    "hexploration"
-  ],
-  "Arcs": ["Zasar", "Arena Arcana"],
+  "Tags": {
+    "Arcs": ["Zasar", "Arena Arcana"],
+    "Weitere": ["Hexploration"]
+  },
   "Nummer": 6,
   "Titelbilder": [],
   "Text": "Nahe Gareth wird der nicht verwesende Körper des Expeditionsleisters Zasar Caradir gefunden. Die Gruppe reist im Auftrag von Zasars Kollegen Gustavus Eibenfeld nach Maraskan, um den Fall zu klären und herauszufinden, was mit den übrigen Mitgliedern der Expedition geschehen ist."

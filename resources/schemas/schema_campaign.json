@@ -4,7 +4,7 @@
   "description": "A campaign description file for binder",
   "type": "object",
   "additionalProperties": false,
-  "required": ["Typ","ID", "Name", "Tags", "Arcs", "Nummer", "Titelbilder", "Text"],
+  "required": ["Typ","ID", "Name", "Tags", "Nummer", "Titelbilder", "Text"],
   "properties": {
     "Typ": {
       "type": "string"
@@ -17,16 +17,14 @@
       "type": "string"
     },
     "Tags": {
-      "type": "array",
-      "items": {
-        "type": "string",
-        "pattern": "^[a-zA-ZäöüÄÖÜß\\-]+$"
-      }
-    },
-    "Arcs": {
-      "type": "array",
-      "items": {
-        "type": "string"
+      "type": "object",
+      "patternProperties": {
+        "^[A-ZÄÖÜ][A-ZÄÖÜa-zäöüß]*$": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
       }
     },
     "Nummer": {

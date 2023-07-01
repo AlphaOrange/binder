@@ -18,15 +18,6 @@
     },
     "Tags": {
       "type": "object",
-      "required": ["Weitere"],
-      "properties": {
-        "Weitere": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        }
-      },
       "patternProperties": {
         "^[A-ZÄÖÜ][A-ZÄÖÜa-zäöüß]*$": {
           "type": "array",

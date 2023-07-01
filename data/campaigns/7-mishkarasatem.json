@@ -2,10 +2,9 @@
   "Typ": "campaign",
   "ID": "mishkarasatem",
   "Name": "Mishkaras Atem",
-  "Tags": [],
-  "Arcs": [
-    "Baron Weinberg"
-  ],
+  "Tags": {
+    "Arcs": ["Baron Weinberg"]
+  },
   "Nummer": 7,
   "Titelbilder": [],
   "Text": "Die Weinberge von Baron von Hofbaren sind verseucht worden und die Helden müssen sich in ein unterirdisches Höhlensystem begeben, um die Ursache zu finden."

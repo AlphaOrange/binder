@@ -2,8 +2,9 @@
   "Typ": "campaign",
   "ID": "dasloch",
   "Name": "Das Loch der Verdammten",
-  "Tags": [],
-  "Arcs": [],
+  "Tags": {
+    "Arcs": []
+  },
   "Nummer": 11,
   "Titelbilder": [],
   "Text": "Auf der Suche nach der Plünderin Morena Mangold gerät die Gruppe in ein Dorf, das seine Toten in einem tiefen Loch entsorgt und seit Kurzem von diesen wieder heimgesucht wird."
