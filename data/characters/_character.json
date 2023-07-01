@@ -1,0 +1,64 @@
+{
+  "Typ": "character",
+  "ID": "",
+  "Name": "",
+  "Tags": [],
+  "Rolle": "primary/recurring/once/mention",
+  "Titel": [],
+  "Profession": "",
+  "Geschlecht": "m/w",
+  "Geburtsjahr": 0,
+  "Todesjahr": null,
+  "Bilder": [],
+  "Kampagnen": [],
+  "Arcs": [],
+  "Orte": [],
+  "Text": "",
+  "Inventar": {
+  },
+  "Spezies": "Mensch",
+  "Sprachen": {
+  },
+  "Schriften": [],
+  "Stats": {
+    "Grundwerte": {
+      "LeP": 0,
+      "AsP": 0,
+      "KaP": 0,
+      "SK": 0,
+      "ZK": 0,
+      "AW": 0,
+      "INI": 0,
+      "GS": 0
+    },
+    "Eigenschaften": {
+      "MU": 8,
+      "KL": 8,
+      "IN": 8,
+      "CH": 8,
+      "FF": 8,
+      "GE": 8,
+      "KO": 8,
+      "KK": 8
+    },
+    "Fertigkeiten": {
+    },
+    "Kampftechniken": {
+    },
+    "Rüstungsschutz": 0,
+    "Waffen": {
+    },
+    "Magie": {
+    },
+    "Götterwirken": {
+    }
+  },
+  "Vorteile": {
+  },
+  "Nachteile": {
+  },
+  "Sonderfertigkeiten": {
+  },
+  "Sonderregeln": {
+  }
+}

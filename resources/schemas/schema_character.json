@@ -1,0 +1,315 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "character",
+  "description": "A character description file for binder",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["Typ","ID", "Name", "Tags", "Rolle", "Titel", "Profession", "Geschlecht", "Geburtsjahr", "Bilder", "Kampagnen", "Arcs", "Orte", "Text", "Inventar", "Spezies", "Sprachen", "Schriften", "Stats", "Vorteile", "Nachteile", "Sonderfertigkeiten", "Sonderregeln"],
+  "properties": {
+    "Typ": {
+      "type": "string"
+    },
+    "ID": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9]*$"
+    },
+    "Name": {
+      "type": "string"
+    },
+    "Tags": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-zA-ZäöüÄÖÜß]+$"
+      }
+    },
+    "Rolle": {
+      "type": "string",
+      "enum": ["primary", "recurring", "once", "mention"]
+    },
+    "Titel": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "Profession": {
+      "type": "string"
+    },
+    "Geschlecht": {
+      "type": "string",
+      "enum": ["m", "w", "d"]
+    },
+    "Geburtsjahr": {
+      "type": "integer"
+    },
+    "Todesjahr": {
+      "type": "integer"
+    },
+    "Bilder": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[^\\\\\\/\\.]+\\.(jpg|png)$"
+      }
+    },
+    "Kampagnen": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-zäöüß]+$"
+      }
+    },
+    "Arcs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "Orte": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "Text": {
+      "type": "string"
+    },
+    "Inventar": {
+      "type": "object",
+      "patternProperties": {
+        "^.*$": {
+          "type": "integer"
+        }
+      }
+    },
+    "Spezies": {
+      "type": "string",
+      "enum": ["Mensch", "Elf", "Halbelf", "Zwerg"]
+    },
+    "Sprachen": {
+      "type": "object",
+      "patternProperties": {
+        "^[a-zA-Z\\- ]+$": {
+          "type": "integer"
+        }
+      },
+      "additionalProperties": false
+    },
+    "Schriften": {
+      "type": "array",
+      "items": {
+        "pattern": "^[a-zA-Z\\- ]+$"
+      }
+    },
+    "Stats": {
+      "type": "object",
+      "properties": {
+        "Grundwerte": {
+          "type": "object",
+          "patternProperties": {
+            "^LeP|AsP|KaP|SK|ZK|AW|INI|GS$": {
+              "type": "integer"
+            }
+          },
+          "additionalProperties": false,
+          "minProperties": 8
+        },
+        "Eigenschaften": {
+          "type": "object",
+          "patternProperties": {
+            "^MU|KL|IN|CH|FF|GE|KO|KK$": {
+              "type": "integer"
+            }
+          },
+          "additionalProperties": false,
+          "minProperties": 8
+        },
+        "Fertigkeiten": {
+          "type": "object",
+          "patternProperties": {
+            "^[A-ZÄÖÜ][A-ZÄÖÜa-zäöüß& ]*$": {
+              "type": "integer"
+            }
+          },
+          "additionalProperties": false
+        },
+        "Kampftechniken": {
+          "type": "object",
+          "patternProperties": {
+            "^[A-ZÄÖÜ][A-ZÄÖÜa-zäöüß& ]*$": {
+              "type": "integer"
+            }
+          },
+          "additionalProperties": false
+        },
+        "Rüstungsschutz": {
+          "type": "integer"
+        },
+        "Waffen": {
+          "type": "object",
+          "patternProperties": {
+            "^[A-ZÄÖÜ][A-ZÄÖÜa-zäöüß& ]*$": {
+              "anyOf": [
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "minProperties": 7,
+                  "properties": {
+                    "Typ": {
+                      "type": "string",
+                      "pattern": "^NK$"
+                    },
+                    "AT": {
+                      "type": "integer"
+                    },
+                    "PA": {
+                      "type": "integer"
+                    },
+                    "TP": {
+                      "type": "array",
+                      "items": {
+                        "type": "integer"
+                      },
+                      "minItems": 2,
+                      "maxItems": 2
+                    },
+                    "RW": {
+                      "type": "string",
+                      "enum": ["kurz", "mittel", "lang"]
+                    },
+                    "Vorteil": {
+                      "type": ["string", "null"]
+                    },
+                    "Nachteil": {
+                      "type": ["string", "null"]
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "minProperties": 8,
+                  "properties": {
+                    "Typ": {
+                      "type": "string",
+                      "pattern": "^FK$"
+                    },
+                    "FK": {
+                      "type": "integer"
+                    },
+                    "TP": {
+                      "type": "array",
+                      "items": {
+                        "type": "integer"
+                      },
+                      "minItems": 2,
+                      "maxItems": 2
+                    },
+                    "LZ": {
+                      "type": "integer"
+                    },
+                    "RW": {
+                      "type": "array",
+                      "items": {
+                        "type": "integer"
+                      },
+                      "minItems": 3,
+                      "maxItems": 3
+                    },
+                    "Munition": {
+                      "type": "integer"
+                    },
+                    "Vorteil": {
+                      "type": ["string", "null"]
+                    },
+                    "Nachteil": {
+                      "type": ["string", "null"]
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "Magie": {
+          "type": "object",
+          "patternProperties": {
+            "^[A-ZÄÖÜ][A-ZÄÖÜa-zäöüß& ]*$": {
+              "type": "array",
+              "items": [
+                {
+                  "type": "integer"
+                }
+              ],
+              "additionalItems": {
+                "type": "string"
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "Götterwirken": {
+          "type": "object",
+          "patternProperties": {
+            "^[A-ZÄÖÜ][A-ZÄÖÜa-zäöüß& ]*$": {
+              "type": "array",
+              "items": [
+                {
+                  "type": "integer"
+                }
+              ],
+              "additionalItems": {
+                "type": "string"
+              }
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false,
+      "minProperties": 7
+    },
+    "Vorteile": {
+      "type": "object",
+      "patternProperties": {
+        "^[A-ZÄÖÜ][A-ZÄÖÜa-zäöüß& ]*$": {
+          "type": "array",
+          "items": {
+            "type": ["string", "integer"]
+          }
+        }
+      }
+    },
+    "Nachteile": {
+      "type": "object",
+      "patternProperties": {
+        "^[A-ZÄÖÜ][A-ZÄÖÜa-zäöüß& ]*$": {
+          "type": "array",
+          "items": {
+            "type": ["string", "integer"]
+          }
+        }
+      }
+    },
+    "Sonderfertigkeiten": {
+      "type": "object",
+      "patternProperties": {
+        "^[A-ZÄÖÜ][A-ZÄÖÜa-zäöüß& ]*$": {
+          "type": "array",
+          "items": {
+            "type": ["string", "integer"]
+          }
+        }
+      }
+    },
+    "Sonderregeln": {
+      "type": "object",
+      "patternProperties": {
+        "^[A-ZÄÖÜ][A-ZÄÖÜa-zäöüß& ]*$": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

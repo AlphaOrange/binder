@@ -1,0 +1,77 @@
+{
+  "Typ": "character",
+  "ID": "zasar",
+  "Name": "Zasar Caradir",
+  "Tags": ["Wissen"],
+  "Rolle": "recurring",
+  "Titel": [],
+  "Profession": "Archäologe",
+  "Geschlecht": "m",
+  "Geburtsjahr": 993,
+  "Bilder": [
+    "char_Zasar.png"
+  ],
+  "Kampagnen": ["dschungelpfade", "zkin"],
+  "Arcs": ["Zasar"],
+  "Orte": ["Gareth", "Maraskan", "Selem", "Vinsalt"],
+  "Text": "Entdecker aus Gareth, der unlängst durch einen Gestaltwandler ersetzt wurde, den er versehentlich aus Alt-Belhanka befreite. Dieser ist seither auf der Jagd nach den vier Iribaarsspiegeln.",
+  "Inventar": {
+  },
+  "Spezies": "Mensch",
+  "Sprachen": {
+  },
+  "Schriften": [],
+  "Stats": {
+    "Grundwerte": {
+      "LeP": 0,
+      "AsP": 0,
+      "KaP": 0,
+      "SK": 0,
+      "ZK": 0,
+      "AW": 0,
+      "INI": 0,
+      "GS": 0
+    },
+    "Eigenschaften": {
+      "MU": 15,
+      "KL": 15,
+      "IN": 13,
+      "CH": 15,
+      "FF": 11,
+      "GE": 14,
+      "KO": 14,
+      "KK": 12
+    },
+    "Fertigkeiten": {},
+    "Kampftechniken": {
+      "Armbrüste": 6,
+      "Bögen": 6,
+      "Wurfwaffen": 6,
+      "Dolche": 6,
+      "Fechtwaffen": 6,
+      "Hiebwaffen": 6,
+      "Kettenwaffen": 6,
+      "Lanzen": 6,
+      "Raufen": 6,
+      "Schilde": 6,
+      "Schwerter": 6,
+      "Stangenwaffen": 6,
+      "Zweihandhiebwaffen": 6,
+      "Zweihandschwerter": 6
+    },
+    "Rüstungsschutz": 0,
+    "Waffen": {
+    },
+    "Magie": {},
+    "Götterwirken": {
+    }
+  },
+  "Vorteile": {
+  },
+  "Nachteile": {
+  },
+  "Sonderfertigkeiten": {
+  },
+  "Sonderregeln": {
+  }
+}

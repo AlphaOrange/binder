@@ -1,0 +1,44 @@
+{
+  "Armbrüste": {
+    "attributes": ["FF"]
+  },
+  "Bögen": {
+    "attributes": ["FF"]
+  },
+  "Wurfwaffen": {
+    "attributes": ["FF"]
+  },
+  "Dolche": {
+    "attributes": ["GE"]
+  },
+  "Fechtwaffen": {
+    "attributes": ["GE"]
+  },
+  "Hiebwaffen": {
+    "attributes": ["KK"]
+  },
+  "Kettenwaffen": {
+    "attributes": ["KK"]
+  },
+  "Lanzen": {
+    "attributes": ["KK"]
+  },
+  "Raufen": {
+    "attributes": ["GE", "KK"]
+  },
+  "Schilde": {
+    "attributes": ["KK"]
+  },
+  "Schwerter": {
+    "attributes": ["GE", "KK"]
+  },
+  "Stangenwaffen": {
+    "attributes": ["GE", "KK"]
+  },
+  "Zweihandhiebwaffen": {
+    "attributes": ["KK"]
+  },
+  "Zweihandschwerter": {
+    "attributes": ["KK"]
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "Typ": "character",
+  "ID": "nelda",
+  "Name": "Nelda Rappenstein",
+  "Tags": [],
+  "Rolle": "once",
+  "Titel": [],
+  "Profession": "Söldnerin",
+  "Geschlecht": "w",
+  "Geburtsjahr": 1009,
+  "Bilder": [
+    "char_Nelda.png"
+  ],
+  "Kampagnen": ["dasloch"],
+  "Arcs": [],
+  "Orte": ["Galebfurt"],
+  "Text": "Fing als Rattenfängerin für die verschiedenen Siedlungen des Barons an, wurde dann aber in Galebfurt sesshaft, weil sie sich trickreich im Kampf gegen die Ghule erwies. Heute steht sie der Gernebrucher Ghulgarde vor, die aus ihr und zwei Mitstreitern besteht.",
+  "Inventar": {
+  },
+  "Spezies": "Mensch",
+  "Sprachen": {
+  },
+  "Schriften": [],
+  "Stats": {
+    "Grundwerte": {
+      "LeP": 0,
+      "AsP": 0,
+      "KaP": 0,
+      "SK": 0,
+      "ZK": 0,
+      "AW": 0,
+      "INI": 0,
+      "GS": 0
+    },
+    "Eigenschaften": {
+      "MU": 16,
+      "KL": 11,
+      "IN": 15,
+      "CH": 10,
+      "FF": 14,
+      "GE": 14,
+      "KO": 13,
+      "KK": 12
+    },
+    "Fertigkeiten": {},
+    "Kampftechniken": {
+      "Armbrüste": 6,
+      "Bögen": 6,
+      "Wurfwaffen": 6,
+      "Dolche": 6,
+      "Fechtwaffen": 6,
+      "Hiebwaffen": 6,
+      "Kettenwaffen": 6,
+      "Lanzen": 6,
+      "Raufen": 6,
+      "Schilde": 6,
+      "Schwerter": 6,
+      "Stangenwaffen": 6,
+      "Zweihandhiebwaffen": 6,
+      "Zweihandschwerter": 6
+    },
+    "Rüstungsschutz": 0,
+    "Waffen": {
+    },
+    "Magie": {},
+    "Götterwirken": {
+    }
+  },
+  "Vorteile": {
+  },
+  "Nachteile": {
+  },
+  "Sonderfertigkeiten": {
+  },
+  "Sonderregeln": {
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "Nebelschwaden": {
+    "type": "ceremony",
+    "attributes": ["IN", "CH", "KO"]
+  },
+  "Unterwasseratmung": {
+    "type": "liturgy",
+    "attributes": ["MU", "IN", "KO"]
+  },
+  "Windhose": {
+    "type": "liturgy",
+    "attributes": ["MU", "CH", "KO"]
+  },
+  "Eidsegen": {
+    "type": "blessing"
+  }
+}

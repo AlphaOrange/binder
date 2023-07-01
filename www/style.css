@@ -1,0 +1,138 @@
+/* Binder dashboard styles */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+
+/* Basic Elements */
+
+h2 {
+  margin-top: 0;
+}
+
+
+/* Galleries */
+
+.binder-gallery {
+  width: 25%;
+  float: right;
+  margin: 0 0 0 16px;
+}
+
+.binder-gallery img {
+  width: 100%;
+  margin: 0 0 16px;
+}
+
+.binder-tagbox span {
+  display: inline-block;
+  padding: 0 0.5em;
+  margin: 0 0.5em 0.25em 0;
+  border-radius: 999px; /* gets automatically reduced to not overlap */
+}
+
+.binder-tagbox span.tag-tag {
+  background: #9f9;
+}
+
+.binder-tagbox span.tag-arc {
+  background: #99f;
+}
+
+.binder-tagbox span.tag-place {
+  background: #f99;
+}
+
+/* STATS */
+
+.binder-attr, .binder-base {
+  display: inline-block;
+  text-align: center;
+  width: 60px;
+  margin: 0 4px;
+  padding: 4px 8px;
+}
+
+.binder-attr-small {
+  display: inline-block;
+  padding: 2px 4px;
+  line-height: 95%;
+  border-radius: 3px;
+}
+
+.binder-base {
+  background: #fff;
+}
+
+.binder-value {
+  display: inline-block;
+  padding: 1px 4px;
+  line-height: 95%;
+  background: #fff;
+  border: 1px solid #000;
+  border-radius: 3px;
+}
+
+.binder-feat {
+}
+
+.binder-fight {
+}
+
+.binder-magic, .binder-karmal {
+}
+
+.binder-magic-spell, .binder-karmal-liturgy {
+}
+
+.binder-magic-trick, .binder-karmal-blessing {
+  font-style: italic;
+}
+
+.binder-magic-ritual, .binder-karmal-ceremony {
+  font-weight: bold;
+}
+
+.binder-specialrules {
+  display: inline-block;
+  width: 300px;
+  padding: 1px 4px;
+  background: #fff;
+  border: 1px solid #000;
+  border-radius: 3px;
+}
+
+.binder-specialrules h5 {
+  font-weight: bold;
+}
+
+.binder-specialrules p {
+}
+
+.binder-attr-MU {
+  background: #e11;
+}
+.binder-attr-KL {
+  background: #a1c;
+}
+.binder-attr-IN {
+  background: #292;
+}
+.binder-attr-CH {
+  background: #111;
+  color: #fff;
+}
+.binder-attr-FF {
+  background: #d9d300;
+}
+.binder-attr-GE {
+  background: #20c;
+  color: #fff;
+}
+.binder-attr-KO {
+  background: #ccc;
+}
+.binder-attr-KK {
+  background: #f82;
+}

@@ -1,0 +1,46 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "campaign",
+  "description": "A campaign description file for binder",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["Typ","ID", "Name", "Tags", "Arcs", "Nummer", "Titelbilder", "Text"],
+  "properties": {
+    "Typ": {
+      "type": "string"
+    },
+    "ID": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9]*$"
+    },
+    "Name": {
+      "type": "string"
+    },
+    "Tags": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-zA-ZäöüÄÖÜß]+$"
+      }
+    },
+    "Arcs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "Nummer": {
+      "type": ["integer", "null"]
+    },
+    "Titelbilder": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[^\\\\\\/\\.]+\\.(jpg|png)$"
+      }
+    },
+    "Text": {
+      "type": "string"
+    }
+  }
+}

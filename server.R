@@ -1,0 +1,276 @@
+server <- function(input, output, session) {
+
+
+  #### Data Pipeline ####
+
+  .data_filtered <- reactive({
+
+    filtered <- .data
+
+    # General filters
+    for (category in setdiff(names(filtered), c("campaign", "labels", "selections", "lists"))) {
+      filtered[[category]] %<>% list.filter(any(Kampagnen %in% input$filter_campaigns))
+    }
+
+    # Type-specific filters
+    filtered$character %<>% list.filter(Rolle %in% input$filter_char_roles)
+
+    filtered
+
+  })
+
+  .char <- reactive({
+    req(input$sel_character)
+    .data$character[[input$sel_character]]
+  })
+
+
+  #### Update filtered selections ####
+
+  observe({
+    choices <- .data$selections$character %>% intersect(names(.data_filtered()$character))
+    selected <- intersect(input$sel_character, choices) %>% ifelse(length(.), ., choices[1])
+    updateSelectInput(session, "sel_character",
+                      choices = choices,
+                      selected = selected)
+  })
+
+
+  #### Character Sheet Outputs ####
+
+  # Bildergalerie
+  output$gallery_character <- renderUI({
+    lapply(.char()$Bilder, \(image) {
+      img(src = file.path("pix", image))
+    }) %>% tagList
+  })
+
+  # Tags
+  output$ui_char_tags <- renderUI({
+    arcs <- .char()$Arcs %>% lapply(\(arc) { span(arc, class = "tag-arc") }) %>% tagList
+    tags <- .char()$Tags %>% lapply(\(tag) { span(tag, class = "tag-tag") }) %>% tagList
+    places <- .char()$Orte %>% lapply(\(place) { span(place, class = "tag-place") }) %>% tagList
+    tagList(arcs, tags, places)
+  })
+
+  # Voller Name
+  output$txt_char_name <- renderText({
+    if (length(.char()$Titel)) {
+      paste(paste(.char()$Titel, collapse = " "), .char()$Name)
+    } else {
+      .char()$Name
+    }
+  })
+
+  # Soziodemographie
+  output$txt_char_sozio <- renderText({
+    age <- ifelse(is.null(.char()$Todesjahr),
+                  as.character(.res$current_year - .char()$Geburtsjahr),
+                  paste0("✝", .char()$Todesjahr - .char()$Geburtsjahr))
+    sprintf("%s / %s / %s",
+      .char()$Profession,
+      .char()$Geschlecht,
+      age
+    )
+  })
+
+  # Charakterbeschreibung
+  output$txt_char_desc <- renderText({
+    .char()$Text
+  })
+
+  # Kampagnen des Charakters
+  output$txt_char_campaigns <- renderText({
+    .data$labels$campaign[unlist(.char()$Kampagnen)] %>%
+      paste0('"', ., '"', collapse = ", ")
+  })
+
+  # Inventar des Charakters
+  output$ui_char_inventory <- renderUI({
+    lapply(names(.char()$Inventar), \(item) {
+      sprintf("%sx %s", .char()$Inventar[[item]], item) %>%
+        (tags$li)
+    }) %>% (tags$ul)
+  })
+
+  # Attribute
+  output$ui_char_attr <- renderUI({
+    lapply(.res$attributes, \(attr) {
+      paste(attr, .char()$Stats$Eigenschaften[[attr]]) %>%
+        span(class = c("binder-attr", sprintf("binder-attr-%s", attr)))
+    }) %>% tagList %>% div
+  })
+
+  # Basiswerte
+  output$ui_char_base <- renderUI({
+    armor <- paste("RS", .char()$Stats$Rüstungsschutz) %>%
+      span(class = "binder-base") %>% list
+    lapply(.res$basevalues, \(base) {
+      paste(base, .char()$Stats$Grundwerte[[base]]) %>%
+        span(class = "binder-base")
+    }) %>% c(armor) %>% tagList %>% div
+  })
+
+  # Fertigkeiten
+  output$ui_char_skills <- renderUI({
+    lapply(names(.char()$Stats$Fertigkeiten), \(feat) {
+      attributes <- .res$skills[[feat]] %>% lapply(\(attribute) {
+        span(.char()$Stats$Eigenschaften[[attribute]],
+             class = sprintf("binder-attr-small binder-attr-%s", attribute))
+      }) %>% tagList
+      tagList(
+        attributes,
+        .char()$Stats$Fertigkeiten[[feat]] %>% span(class = "binder-value"),
+        feat
+      ) %>% div(class = "binder-feat")
+    }) %>% tagList %>% div
+  })
+
+  # Kampftechniken
+  output$ui_char_fight <- renderUI({
+    lapply(names(.res$fighting), \(fight) {
+      if (fight %in% names(.char()$Stats$Kampftechniken)) {
+        value <- .char()$Stats$Kampftechniken[[fight]]
+      } else {
+        value <- 6
+      }
+      tagList(
+        value %>% span(class = "binder-value"),
+        fight
+      ) %>% div(class = "binder-fight")
+    }) %>% tagList %>% div
+  })
+
+  output$ui_char_weapons <- renderUI({
+    lapply(names(.char()$Stats$Waffen), \(weapon) {
+      item <- .char()$Stats$Waffen[[weapon]]
+      if (item$Typ == "NK") {
+        if (is.null(item$PA)) { item$PA <- .char()$Stats$Grundwerte$AW }
+        val_AT <- item$AT %>% span(class = "binder-value")
+        val_PA <- item$PA %>% span(class = "binder-value")
+        val_TP <- sprintf("%iW6 %s",
+                          item$TP[[1]],
+                          ifelse(item$TP[[2]] >= 0,
+                                 paste("+", item$TP[[2]]),
+                                 paste("-", abs(item$TP[[2]])))) %>% span(class = "binder-value")
+        block <- tagList(val_AT, val_PA, val_TP, paste0("(", item$RW, ")"), strong(weapon))
+      } else {
+        val_AT <- item$FK %>% span(class = "binder-value")
+        val_PA <- .char()$Stats$Grundwerte$AW %>% span(class = "binder-value")
+        val_TP <- sprintf("%iW6 %s",
+                          item$TP[[1]],
+                          ifelse(item$TP[[2]] >= 0,
+                                 paste("+", item$TP[[2]]),
+                                 paste("-", abs(item$TP[[2]])))) %>% span(class = "binder-value")
+        val_load <- paste0("LZ ", item$LZ, " (", item$Munition, ")")
+        val_RW <- item$RW %>% paste(collapse = "/") %>% paste("RW")
+        block <- tagList(val_AT, val_PA, val_TP, val_load, val_RW, strong(weapon))
+      }
+      block <- block %>% div(class = "binder-fight")
+      if (!is.null(item$Vorteil)) {
+        block <- tagList(block, div(paste0("Vorteil: ", item$Vorteil)))
+      }
+      if (!is.null(item$Nachteil)) {
+        block <- tagList(block, div(paste0("Nachteil: ", item$Nachteil)))
+      }
+      block
+    }) %>% tagList %>% div
+  })
+
+  # Magie: Zauber + Zaubersprüche + Rituale
+  output$ui_char_magic <- renderUI({
+    lapply(names(.char()$Stats$Magie), \(action) {
+      details    <- .res$magic[[action]]
+      if (length(.char()$Stats$Magie[[action]])) {
+        # Magische Handlungen mit Wert und Attributen
+        value      <- .char()$Stats$Magie[[action]][1] %>% span(class = "binder-value")
+        extensions <- .char()$Stats$Magie[[action]][-1] %>% paste(collapse = ", ")
+        if (extensions != "") { extensions <- paste0("(", extensions, ")") }
+        attributes <- details$attributes %>% lapply(\(attribute) {
+          span(.char()$Stats$Eigenschaften[[attribute]],
+               class = sprintf("binder-attr-small binder-attr-%s", attribute))
+        }) %>% tagList
+        tagList(
+          attributes,
+          value,
+          action,
+          extensions
+        ) %>% div(class = sprintf("binder-magic binder-magic-%s", details$type))
+      } else {
+        # Magische Handlungen ohne Werte (z. B. Zaubertricks)
+        action %>% div(class = sprintf("binder-magic binder-magic-%s", details$type))
+      }
+    }) %>% tagList %>% div
+  })
+
+  # Götterwirken: Liturgien + Segnungen + Zeremonien
+  output$ui_char_karmal <- renderUI({
+    lapply(names(.char()$Stats$Götterwirken), \(action) {
+      details    <- .res$karmal[[action]]
+      if (length(.char()$Stats$Götterwirken[[action]])) {
+        # Karmale Handlungen mit Wert und Attributen
+        value      <- .char()$Stats$Götterwirken[[action]][1] %>% span(class = "binder-value")
+        extensions <- .char()$Stats$Götterwirken[[action]][-1] %>% paste(collapse = ", ")
+        if (extensions != "") { extensions <- paste0("(", extensions, ")") }
+        attributes <- details$attributes %>% lapply(\(attribute) {
+          span(.char()$Stats$Eigenschaften[[attribute]],
+               class = sprintf("binder-attr-small binder-attr-%s", attribute))
+        }) %>% tagList
+        tagList(
+          attributes,
+          value,
+          action,
+          extensions
+        ) %>% div(class = sprintf("binder-karmal binder-karmal-%s", details$type))
+      } else {
+        # Karmale Handlungen ohne Werte (z. B. Zaubertricks)
+        action %>% div(class = sprintf("binder-karmal binder-karmal-%s", details$type))
+      }
+    }) %>% tagList %>% div
+  })
+
+  # Funktion: Textbaustein aus unterschiedlich aufgebauten Detaillisten
+  fct_details2text <- function(name, details) {
+    if (length(details) == 0) {
+      name
+    } else if (length(details) == 2) {
+      paste0(name, " ", as.roman(details[[1]]), ": ", details[[2]])
+    } else if (is.numeric(details[[1]])) {
+      paste0(name, " ", as.roman(details[[1]]))
+    } else {
+      paste0(name, ": ", details[[1]])
+    }
+  }
+
+  # Sonderfertigkeiten
+  output$ui_char_abilities <- renderUI({
+    lapply(names(.char()$Sonderfertigkeiten), \(item) {
+      fct_details2text(item, .char()$Sonderfertigkeiten[[item]])
+    }) %>% tagList
+  })
+
+  # Vorteile
+  output$ui_char_advantages <- renderUI({
+    lapply(names(.char()$Vorteile), \(item) {
+      fct_details2text(item, .char()$Vorteile[[item]])
+    }) %>% tagList
+  })
+
+  # Nachteile
+  output$ui_char_disadvantages <- renderUI({
+    lapply(names(.char()$Nachteile), \(item) {
+      fct_details2text(item, .char()$Nachteile[[item]])
+    }) %>% tagList
+  })
+
+  # Sonderregeln
+  output$ui_char_rules <- renderUI({
+    lapply(names(.char()$Sonderregeln), \(item) {
+      div(class = "binder-specialrules",
+        h5(item),
+        p(.char()$Sonderregeln[[item]])
+      )
+    }) %>% tagList
+  })
+
+}

@@ -1,0 +1,93 @@
+{
+  "Applicatus": {
+    "type": "ritual",
+    "attributes": ["KL", "IN", "FF"]
+  },
+  "Aquafaxius": {
+    "type": "spell",
+    "attributes": ["MU", "KL", "CH"]
+  },
+  "Auge des Limbus": {
+    "type": "spell",
+    "attributes": ["MU", "IN", "KK"]
+  },
+  "Caldofrigo": {
+    "type": "ritual",
+    "attributes": ["IN", "CH", "KO"]
+  },
+  "Debilitatio": {
+    "type": "spell",
+    "attributes": ["MU", "KL", "CH"]
+  },
+  "Desintegratus": {
+    "type": "spell",
+    "attributes": ["KL", "CH", "KK"]
+  },
+  "Feenstaub": {
+    "type": "spell",
+    "attributes": ["MU", "KL", "CH"]
+  },
+  "Foramen": {
+    "type": "spell",
+    "attributes": ["KL", "IN", "FF"]
+  },
+  "Geisteressenz": {
+    "type": "spell",
+    "attributes": ["MU", "KL", "CH"]
+  },
+  "Hartes schmelze": {
+    "type": "ritual",
+    "attributes": ["MU", "IN", "KO"]
+  },
+  "Ignifaxius": {
+    "type": "spell",
+    "attributes": ["MU", "KL", "CH"]
+  },
+  "Invocatio Minima": {
+    "type": "spell",
+    "attributes": ["MU", "CH", "KO"]
+  },
+  "Manifesto": {
+    "type": "spell",
+    "attributes": ["MU", "KL", "CH"]
+  },
+  "Menetekel": {
+    "type": "spell",
+    "attributes": ["KL", "CH", "FF"]
+  },
+  "Motoricus": {
+    "type": "spell",
+    "attributes": ["KL", "FF", "KK"]
+  },
+  "Nuntiovolo": {
+    "type": "spell",
+    "attributes": ["MU", "KL", "CH"]
+  },
+  "Odem Arcanum": {
+    "type": "spell",
+    "attributes": ["KL", "IN", "IN"]
+  },
+  "Transversalis": {
+    "type": "spell",
+    "attributes": ["MU", "CH", "KO"]
+  },
+  "Xenographus": {
+    "type": "ritual",
+    "attributes": ["MU", "KL", "IN"]
+  },
+  "Feenfüße": {
+    "type": "trick"
+  },
+  "Feuerfinger": {
+    "type": "trick"
+  },
+  "Glücksgriff": {
+    "type": "trick"
+  },
+  "Leselampe": {
+    "type": "trick"
+  },
+  "Zauberfeder": {
+    "type": "trick"
+  }
+}

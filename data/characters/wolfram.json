@@ -1,0 +1,77 @@
+{
+  "Typ": "character",
+  "ID": "wolfram",
+  "Name": "Wolfram Silberschmitt",
+  "Tags": [],
+  "Rolle": "recurring",
+  "Titel": [],
+  "Profession": "Alchemist",
+  "Geschlecht": "m",
+  "Geburtsjahr": 1004,
+  "Bilder": [
+    "char_Wolfram.png"
+  ],
+  "Kampagnen": ["zkin", "dasloch"],
+  "Arcs": [],
+  "Orte": ["Honingen"],
+  "Text": "Ein Alchemist mit unzähligen Verbindungen in Alchemistenkreise. Seine Neugier hat gesiegt, als er sich von Minverva bei der Abenteuerergilde anheuern ließ, jedoch merkte er schnell, dass er seine Zeit viel lieber im Labor oder auf Kongressen verbringt als sein Leben in irgendwelchen verfallenen Tempeln zu verbringen. Wenn er nicht gerade unterwegs ist, im sich mit Collegae auszutauschen ist er also in seinem Labor zu finden.",
+  "Inventar": {
+  },
+  "Spezies": "Mensch",
+  "Sprachen": {
+  },
+  "Schriften": [],
+  "Stats": {
+    "Grundwerte": {
+      "LeP": 0,
+      "AsP": 0,
+      "KaP": 0,
+      "SK": 0,
+      "ZK": 0,
+      "AW": 0,
+      "INI": 0,
+      "GS": 0
+    },
+    "Eigenschaften": {
+      "MU": 10,
+      "KL": 16,
+      "IN": 14,
+      "CH": 14,
+      "FF": 14,
+      "GE": 10,
+      "KO": 12,
+      "KK": 10
+    },
+    "Fertigkeiten": {},
+    "Kampftechniken": {
+      "Armbrüste": 6,
+      "Bögen": 6,
+      "Wurfwaffen": 6,
+      "Dolche": 6,
+      "Fechtwaffen": 6,
+      "Hiebwaffen": 6,
+      "Kettenwaffen": 6,
+      "Lanzen": 6,
+      "Raufen": 6,
+      "Schilde": 6,
+      "Schwerter": 6,
+      "Stangenwaffen": 6,
+      "Zweihandhiebwaffen": 6,
+      "Zweihandschwerter": 6
+    },
+    "Rüstungsschutz": 0,
+    "Waffen": {
+    },
+    "Magie": {},
+    "Götterwirken": {
+    }
+  },
+  "Vorteile": {
+  },
+  "Nachteile": {
+  },
+  "Sonderfertigkeiten": {
+  },
+  "Sonderregeln": {
+  }
+}

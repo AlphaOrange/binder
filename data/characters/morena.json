@@ -1,0 +1,80 @@
+{
+  "Typ": "character",
+  "ID": "morena",
+  "Name": "Morena Mangold",
+  "Tags": [],
+  "Rolle": "once",
+  "Titel": [],
+  "Profession": "Söldnerin",
+  "Geschlecht": "w",
+  "Geburtsjahr": 1001,
+  "Todesjahr": 1038,
+  "Bilder": [
+    "char_Morena.png",
+    "char_Morena_Zombie.png",
+    "char_Morena2.png"
+  ],
+  "Kampagnen": ["dasloch"],
+  "Arcs": [],
+  "Orte": ["Galebfurt"],
+  "Text": "Eine Söldnerin aus der freien Stadt Lowangen, die sich in zahlreichen Kämpfen gegen die Orks bewährte. Dabei fiel allerdings ihr Blutrausch immer wieder zum Problem, in dem sie außerdem die Leichen ihrer Feinde schändet und deren Heimat plündert. Nachdem ihr eine schwere Niederlage gegen die Ork angehängt wurde, zog sie nach Süden und diente als Söldnerin, wobei sie ihre Auftraggeber selten genau prüfte. So nahm sie ohne dies genau zu wissen, an einem Raub an einer kaiserlichen Warenkolonne zur Akademie teil, wo sie Schmuck und ein mächtiges Artefakt entwendete und floh anschließend verletzt nach Galebfurt. Dort starb sie an ihren Wunden und wurde ins Loch der Verdammten geworfen. Der Nekromant Tann holte sie als Zombie zurück.",
+  "Inventar": {
+  },
+  "Spezies": "Mensch",
+  "Sprachen": {
+  },
+  "Schriften": [],
+  "Stats": {
+    "Grundwerte": {
+      "LeP": 0,
+      "AsP": 0,
+      "KaP": 0,
+      "SK": 0,
+      "ZK": 0,
+      "AW": 0,
+      "INI": 0,
+      "GS": 0
+    },
+    "Eigenschaften": {
+      "MU": 22,
+      "KL": 6,
+      "IN": 10,
+      "CH": 6,
+      "FF": 8,
+      "GE": 10,
+      "KO": 13,
+      "KK": 15
+    },
+    "Fertigkeiten": {},
+    "Kampftechniken": {
+      "Armbrüste": 6,
+      "Bögen": 6,
+      "Wurfwaffen": 6,
+      "Dolche": 6,
+      "Fechtwaffen": 6,
+      "Hiebwaffen": 6,
+      "Kettenwaffen": 6,
+      "Lanzen": 6,
+      "Raufen": 6,
+      "Schilde": 6,
+      "Schwerter": 6,
+      "Stangenwaffen": 6,
+      "Zweihandhiebwaffen": 6,
+      "Zweihandschwerter": 6
+    },
+    "Rüstungsschutz": 0,
+    "Waffen": {
+    },
+    "Magie": {},
+    "Götterwirken": {
+    }
+  },
+  "Vorteile": {
+  },
+  "Nachteile": {
+  },
+  "Sonderfertigkeiten": {
+  },
+  "Sonderregeln": {
+  }
+}

@@ -1,0 +1,142 @@
+{
+  "Typ": "character",
+  "ID": "cisilius",
+  "Name": "Cisilius Hexandor von Gryffinbrygg",
+  "Tags": [],
+  "Rolle": "recurring",
+  "Titel": [
+    "Magister Viatores Puniniensis"
+  ],
+  "Profession": "Graumagier",
+  "Geschlecht": "m",
+  "Geburtsjahr": 968,
+  "Bilder": [
+    "char_cisilius.jpg"
+  ],
+  "Kampagnen": ["kessel"],
+  "Arcs": ["Liga der Magier"],
+  "Orte": ["Honingen", "Punin", "Lowangen"],
+  "Text": "Cisilius lehrte lange Jahrzehnte an der Akademie zu Punin bis ihn ein böser Streich zu Erkenntnis brachte, dass er den Draht zur heutigen Jugend verloren hat. Daraufhin brach er zum ersten Mal wirklich in die Welt außerhalb der heimischen Mauern auf. Da er seit einem misslungenen Experiment sehr vergesslich geworden ist hat niemandem Bescheid gesagt und überdies noch seinen Zauberstab vergessen. Nun schließt er sich Abenteuergruppen an, um zu verstehen, wie junge Menschen wirklich ticken.",
+  "Inventar": {
+    "Zauberstab": 1,
+    "Feenstaub": 2
+  },
+  "Spezies": "Mensch",
+  "Sprachen": {
+    "Garethi": 3,
+    "Bosparano": 3,
+    "Tulamidya": 1,
+    "Ur-Tulamidya": 1,
+    "Zhayad": 1
+  },
+  "Schriften": ["Kusliker Zeichen", "Alt-Imperiale Zeichen", "Zhayad-Zeichen"],
+  "Stats": {
+    "Grundwerte": {
+      "LeP": 27,
+      "AsP": 44,
+      "KaP": 0,
+      "SK": 2,
+      "ZK": 0,
+      "AW": 5,
+      "INI": 12,
+      "GS": 8
+    },
+    "Eigenschaften": {
+      "MU": 14,
+      "KL": 16,
+      "IN": 13,
+      "CH": 13,
+      "FF": 11,
+      "GE": 10,
+      "KO": 11,
+      "KK": 10
+    },
+    "Fertigkeiten": {
+      "Klettern": 2,
+      "Körperbeherrschung": 4,
+      "Selbstbeherrschung": 3,
+      "Sinnesschärfe": 7,
+      "Verbergen": 4,
+      "Zechen": 4,
+      "Bekehren und Überzeugen": 4,
+      "Etikette": 7,
+      "Menschenkenntnis": 4,
+      "Überreden": 5,
+      "Willenskraft": 8
+    },
+    "Kampftechniken": {
+      "Stangenwaffen": 10
+    },
+    "Rüstungsschutz": 0,
+    "Waffen": {
+      "Zauberstab": {
+        "Typ": "NK",
+        "AT": 11,
+        "PA": 6,
+        "TP": [1, 2],
+        "RW": "lang",
+        "Vorteil": "Dieser Stab ist sehr lang",
+        "Nachteil": "Dieser Stab ist sehr wabbelig"
+      },
+      "Wurfsterne": {
+        "Typ": "FK",
+        "FK": 11,
+        "TP": [1, 2],
+        "LZ": 1,
+        "RW": [10, 20, 30],
+        "Munition": 3,
+        "Vorteil": null,
+        "Nachteil": null
+      }
+    },
+    "Magie": {
+      "Aquafaxius": [12, "Intensiver Strahl"],
+      "Auge des Limbus": [12, "Aus dem Limbus", "Stärkerer Sog"],
+      "Desintegratus": [8, "Höhere Zerstörungskraft 1"],
+      "Feenstaub": [2],
+      "Foramen": [8, "Wiederverschließbar"],
+      "Geisteressenz": [4],
+      "Ignifaxius": [12, "Intensiver Strahl"],
+      "Invocatio Minima": [8, "Größere Menge"],
+      "Manifesto": [16, "Größere Menge", "Noch größere Menge"],
+      "Menetekel": [4],
+      "Nuntiovolo": [6],
+      "Odem Arcanum": [12, "Kegelsicht"],
+      "Transversalis": [10, "Mehr Gewicht"],
+      "Applicatus": [12],
+      "Caldofrigo": [6],
+      "Hartes schmelze": [10, "Größere Objekte 1"],
+      "Xenographus": [8, "Längere Wirkungsdauer 1"],
+      "Debilitatio": [7],
+      "Motoricus": [3],
+      "Feenfüße": [],
+      "Zauberfeder": [],
+      "Feuerfinger": [],
+      "Glücksgriff": [],
+      "Leselampe": []
+    },
+    "Götterwirken": {
+      "Windhose": [11],
+      "Unterwasseratmung": [12],
+      "Nebelschwaden": [13],
+      "Eidsegen": []
+    }
+  },
+  "Vorteile": {
+    "Zauberer": [],
+    "Verbesserte Regeneration (Astralenergie)": [3]
+  },
+  "Nachteile": {
+    "Wilde Magie": [],
+    "Behäbig": [],
+    "Verpflichtungen": [1, "Magier gegenüber Akademie"]
+  },
+  "Sonderfertigkeiten": {
+    "Verteidigungshaltung": [],
+    "Schicksalsmacht": []
+  },
+  "Sonderregeln": {
+    "Ich bin Cisilius": "Er ist Cisilius",
+    "Ich bin Magier": "Er ist auch ein mächtiger Magier aus Punin"
+  }
+}

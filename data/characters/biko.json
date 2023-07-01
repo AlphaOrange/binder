@@ -1,0 +1,78 @@
+{
+  "Typ": "character",
+  "ID": "biko",
+  "Name": "Biko",
+  "Tags": [
+    "honingen"
+  ],
+  "Rolle": "recurring",
+  "Titel": [],
+  "Profession": "Bettler",
+  "Geschlecht": "m",
+  "Geburtsjahr": 1004,
+  "Bilder": [
+    "char_biko.png"
+  ],
+  "Kampagnen": ["abilacht", "zkin"],
+  "Arcs": [],
+  "Orte": ["Honingen", "Galebfurt"],
+  "Text": "Biko, der Bettler, lebt in Honingen auf der Straße. Er verfügt ohne es selbst zu wissen über die Gabe der intuitiven Magie und liest manchmal die Gedanken von Passanten, wodurch er wertvolle Informationen aufschnappen kann, aber auch unnheimlich wirkt, wenn er Menschen auf Dinge anspricht, von denen er eigentlich nichts wissen dürfte.\nEr kennt das Loch von Galebfurt, wo er seiner Hinrichtung nur knapp entrinnen konnte.",
+  "Inventar": {
+  },
+  "Spezies": "Mensch",
+  "Sprachen": {
+  },
+  "Schriften": [],
+  "Stats": {
+    "Grundwerte": {
+      "LeP": 0,
+      "AsP": 0,
+      "KaP": 0,
+      "SK": 0,
+      "ZK": 0,
+      "AW": 0,
+      "INI": 0,
+      "GS": 0
+    },
+    "Eigenschaften": {
+      "MU": 13,
+      "KL": 10,
+      "IN": 16,
+      "CH": 9,
+      "FF": 11,
+      "GE": 9,
+      "KO": 8,
+      "KK": 10
+    },
+    "Fertigkeiten": {},
+    "Kampftechniken": {
+      "Armbrüste": 6,
+      "Bögen": 6,
+      "Wurfwaffen": 6,
+      "Dolche": 6,
+      "Fechtwaffen": 6,
+      "Hiebwaffen": 6,
+      "Kettenwaffen": 6,
+      "Lanzen": 6,
+      "Raufen": 6,
+      "Schilde": 6,
+      "Schwerter": 6,
+      "Stangenwaffen": 6,
+      "Zweihandhiebwaffen": 6,
+      "Zweihandschwerter": 6
+    },
+    "Rüstungsschutz": 0,
+    "Waffen": {},
+    "Magie": {},
+    "Götterwirken": {
+    }
+  },
+  "Vorteile": {
+  },
+  "Nachteile": {
+  },
+  "Sonderfertigkeiten": {
+  },
+  "Sonderregeln": {
+  }
+}
