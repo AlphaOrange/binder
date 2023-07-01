@@ -47,10 +47,11 @@ server <- function(input, output, session) {
 
   # Tags
   output$ui_char_tags <- renderUI({
-    arcs <- .char()$Arcs %>% lapply(\(arc) { span(arc, class = "tag-arc") }) %>% tagList
-    tags <- .char()$Tags %>% lapply(\(tag) { span(tag, class = "tag-tag") }) %>% tagList
-    places <- .char()$Orte %>% lapply(\(place) { span(place, class = "tag-place") }) %>% tagList
-    tagList(arcs, tags, places)
+    lapply(names(.char()$Tags), \(tag_type) {
+      .char()$Tags[[tag_type]] %>%
+        lapply(\(tag) { span(tag, class = c("binder-tag-all", paste0("binder-tag-", tag_type))) }) %>%
+        tagList
+    }) %>% tagList
   })
 
   # Voller Name

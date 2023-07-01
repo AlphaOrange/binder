@@ -32,15 +32,15 @@ h2 {
   border-radius: 999px; /* gets automatically reduced to not overlap */
 }
 
-.binder-tagbox span.tag-tag {
+.binder-tag-all {
   background: #9f9;
 }
 
-.binder-tagbox span.tag-arc {
+.binder-tag-Arcs {
   background: #99f;
 }
 
-.binder-tagbox span.tag-place {
+.binder-tag-Orte {
   background: #f99;
 }
 
