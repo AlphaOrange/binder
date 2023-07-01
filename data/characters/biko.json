@@ -63,7 +63,13 @@
     },
     "Rüstungsschutz": 0,
     "Waffen": {},
-    "Magie": {},
+    "Magie": {
+      "Zaubersprüche": {
+      },
+      "Rituale": {
+      },
+      "Zaubertricks": []
+    },
     "Götterwirken": {
     }
   },

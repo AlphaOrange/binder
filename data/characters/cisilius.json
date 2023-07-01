@@ -90,30 +90,36 @@
       }
     },
     "Magie": {
-      "Aquafaxius": [12, "Intensiver Strahl"],
-      "Auge des Limbus": [12, "Aus dem Limbus", "Stärkerer Sog"],
-      "Desintegratus": [8, "Höhere Zerstörungskraft 1"],
-      "Feenstaub": [2],
-      "Foramen": [8, "Wiederverschließbar"],
-      "Geisteressenz": [4],
-      "Ignifaxius": [12, "Intensiver Strahl"],
-      "Invocatio Minima": [8, "Größere Menge"],
-      "Manifesto": [16, "Größere Menge", "Noch größere Menge"],
-      "Menetekel": [4],
-      "Nuntiovolo": [6],
-      "Odem Arcanum": [12, "Kegelsicht"],
-      "Transversalis": [10, "Mehr Gewicht"],
-      "Applicatus": [12],
-      "Caldofrigo": [6],
-      "Hartes schmelze": [10, "Größere Objekte 1"],
-      "Xenographus": [8, "Längere Wirkungsdauer 1"],
-      "Debilitatio": [7],
-      "Motoricus": [3],
-      "Feenfüße": [],
-      "Zauberfeder": [],
-      "Feuerfinger": [],
-      "Glücksgriff": [],
-      "Leselampe": []
+      "Zaubersprüche": {
+        "Aquafaxius": [12, "Intensiver Strahl"],
+        "Auge des Limbus": [12, "Aus dem Limbus", "Stärkerer Sog"],
+        "Desintegratus": [8, "Höhere Zerstörungskraft 1"],
+        "Feenstaub": [2],
+        "Foramen": [8, "Wiederverschließbar"],
+        "Geisteressenz": [4],
+        "Ignifaxius": [12, "Intensiver Strahl"],
+        "Invocatio Minima": [8, "Größere Menge"],
+        "Manifesto": [16, "Größere Menge", "Noch größere Menge"],
+        "Menetekel": [4],
+        "Nuntiovolo": [6],
+        "Odem Arcanum": [12, "Kegelsicht"],
+        "Transversalis": [10, "Mehr Gewicht"],
+        "Debilitatio": [7],
+        "Motoricus": [3]
+      },
+      "Rituale": {
+        "Applicatus": [12],
+        "Caldofrigo": [6],
+        "Hartes schmelze": [10, "Größere Objekte 1"],
+        "Xenographus": [8, "Längere Wirkungsdauer 1"]
+      },
+      "Zaubertricks": [
+        "Feenfüße",
+        "Zauberfeder",
+        "Feuerfinger",
+        "Glücksgriff",
+        "Leselampe"
+      ]
     },
     "Götterwirken": {
       "Windhose": [11],

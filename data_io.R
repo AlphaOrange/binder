@@ -54,16 +54,12 @@ load_data <- function() {
   json_files <- list.files(path = "data", pattern = "^[^_].*\\.json$", full.names = TRUE, recursive = TRUE)
   for (file in json_files) {
     single <- read_json(file)
-    # if available auto-complete optional properties via schema
+    # if available auto-complete optional properties with empty vectors/list, single entries remain NULL
     if (single$Typ %in% names(schemas)) {
       for (property in names(schemas[[single$Typ]]$properties)) {
         if (!(property %in% names(single))) {
           type <- schemas[[single$Typ]]$properties[[property]]$type
-          if (type == "string") {
-            single[[property]] <- character(0)
-          } else if (type %in% c("integer", "number")) {
-            single[[property]] <- numeric(0)
-          } else if (type == "array") {
+          if (type == "array") {
             subtype <- schemas[[single$Typ]]$properties[[property]]$type$items$type
             if (subtype == "string") {
               single[[property]] <- character(0)

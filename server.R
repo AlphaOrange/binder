@@ -65,12 +65,16 @@ server <- function(input, output, session) {
 
   # Soziodemographie
   output$txt_char_sozio <- renderText({
-    age <- ifelse(is.null(.char()$Todesjahr),
-                  as.character(.res$current_year - .char()$Geburtsjahr),
-                  paste0("✝", .char()$Todesjahr - .char()$Geburtsjahr))
-    sprintf("%s / %s / %s",
+    dead <- !is.null(.char()$Todesjahr)
+    born <- paste0("*", .char()$Geburtsjahr)
+    died <- ifelse(dead, paste0("✝", .char()$Todesjahr), "")
+    age <- ifelse(dead, .char()$Todesjahr - .char()$Geburtsjahr,
+                        .res$current_year - .char()$Geburtsjahr)
+
+    sprintf("%s / %s / %s (%i)",
       .char()$Profession,
       .char()$Geschlecht,
+      paste(c(born, died), collapse = " "),
       age
     )
   })
@@ -180,28 +184,47 @@ server <- function(input, output, session) {
 
   # Magie: Zauber + Zaubersprüche + Rituale
   output$ui_char_magic <- renderUI({
-    lapply(names(.char()$Stats$Magie), \(action) {
+
+    magic_spells <- lapply(names(.char()$Stats$Magie$Zaubersprüche), \(action) {
       details    <- .res$magic[[action]]
-      if (length(.char()$Stats$Magie[[action]])) {
-        # Magische Handlungen mit Wert und Attributen
-        value      <- .char()$Stats$Magie[[action]][1] %>% span(class = "binder-value")
-        extensions <- .char()$Stats$Magie[[action]][-1] %>% paste(collapse = ", ")
-        if (extensions != "") { extensions <- paste0("(", extensions, ")") }
-        attributes <- details$attributes %>% lapply(\(attribute) {
-          span(.char()$Stats$Eigenschaften[[attribute]],
-               class = sprintf("binder-attr-small binder-attr-%s", attribute))
-        }) %>% tagList
-        tagList(
-          attributes,
-          value,
-          action,
-          extensions
-        ) %>% div(class = sprintf("binder-magic binder-magic-%s", details$type))
-      } else {
-        # Magische Handlungen ohne Werte (z. B. Zaubertricks)
-        action %>% div(class = sprintf("binder-magic binder-magic-%s", details$type))
-      }
-    }) %>% tagList %>% div
+      value      <- .char()$Stats$Magie$Zaubersprüche[[action]][1] %>% span(class = "binder-value")
+      extensions <- .char()$Stats$Magie$Zaubersprüche[[action]][-1] %>% paste(collapse = ", ")
+      if (extensions != "") { extensions <- paste0("(", extensions, ")") }
+      attributes <- details$attributes %>% lapply(\(attribute) {
+        span(.char()$Stats$Eigenschaften[[attribute]],
+             class = sprintf("binder-attr-small binder-attr-%s", attribute))
+      }) %>% tagList
+      tagList(
+        attributes,
+        value,
+        action,
+        extensions
+      ) %>% div(class = sprintf("binder-magic binder-magic-%s", details$type))
+    }) %>% tagList
+
+    magic_rituals <- lapply(names(.char()$Stats$Magie$Rituale), \(action) {
+      details    <- .res$magic[[action]]
+      value      <- .char()$Stats$Magie$Rituale[[action]][1] %>% span(class = "binder-value")
+      extensions <- .char()$Stats$Magie$Rituale[[action]][-1] %>% paste(collapse = ", ")
+      if (extensions != "") { extensions <- paste0("(", extensions, ")") }
+      attributes <- details$attributes %>% lapply(\(attribute) {
+        span(.char()$Stats$Eigenschaften[[attribute]],
+             class = sprintf("binder-attr-small binder-attr-%s", attribute))
+      }) %>% tagList
+      tagList(
+        attributes,
+        value,
+        action,
+        extensions
+      ) %>% div(class = sprintf("binder-magic binder-magic-%s", details$type))
+    }) %>% tagList
+
+    magic_tricks <- lapply(.char()$Stats$Magie$Zaubertricks, \(action) {
+      details    <- .res$magic[[action]]
+      action %>% div(class = sprintf("binder-magic binder-magic-%s", details$type))
+    }) %>% tagList
+
+    div(tagList(magic_spells, magic_rituals, magic_tricks))
   })
 
   # Götterwirken: Liturgien + Segnungen + Zeremonien
