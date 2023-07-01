@@ -20,7 +20,7 @@
       "type": "array",
       "items": {
         "type": "string",
-        "pattern": "^[a-zA-ZäöüÄÖÜß]+$"
+        "pattern": "^[a-zA-ZäöüÄÖÜß\\-]+$"
       }
     },
     "Arcs": {
