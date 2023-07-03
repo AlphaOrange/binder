@@ -62,7 +62,12 @@
       "Zweihandschwerter": 6
     },
     "Rüstungsschutz": 0,
-    "Waffen": {},
+    "Waffen": {
+      "Nahkampf": {
+      },
+      "Fernkampf": {
+      }
+    },
     "Magie": {
       "Zaubersprüche": {
       },

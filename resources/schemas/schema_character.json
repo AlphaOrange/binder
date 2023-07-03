@@ -140,18 +140,16 @@
         },
         "Waffen": {
           "type": "object",
-          "patternProperties": {
-            "^[A-ZÄÖÜ][A-ZÄÖÜa-zäöüß& ]*$": {
-              "anyOf": [
-                {
+          "additionalProperties": false,
+          "properties": {
+            "Nahkampf": {
+              "type": "object",
+              "properties": {
+                "^[A-ZÄÖÜ][A-ZÄÖÜa-zäöüß& ]*$": {
                   "type": "object",
                   "additionalProperties": false,
-                  "minProperties": 7,
+                  "minProperties": 6,
                   "properties": {
-                    "Typ": {
-                      "type": "string",
-                      "pattern": "^NK$"
-                    },
                     "AT": {
                       "type": "integer"
                     },
@@ -177,16 +175,17 @@
                       "type": ["string", "null"]
                     }
                   }
-                },
-                {
+                }
+              }
+            },
+            "Fernkampf": {
+              "type": "object",
+              "properties": {
+                "^[A-ZÄÖÜ][A-ZÄÖÜa-zäöüß& ]*$": {
                   "type": "object",
                   "additionalProperties": false,
-                  "minProperties": 8,
+                  "minProperties": 6,
                   "properties": {
-                    "Typ": {
-                      "type": "string",
-                      "pattern": "^FK$"
-                    },
                     "FK": {
                       "type": "integer"
                     },
@@ -220,7 +219,7 @@
                     }
                   }
                 }
-              ]
+              }
             }
           }
         },

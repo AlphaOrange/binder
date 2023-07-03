@@ -65,6 +65,10 @@
     },
     "Rüstungsschutz": 0,
     "Waffen": {
+      "Nahkampf": {
+      },
+      "Fernkampf": {
+      }
     },
     "Magie": {
       "Zaubersprüche": {

@@ -69,24 +69,26 @@
     },
     "Rüstungsschutz": 0,
     "Waffen": {
-      "Zauberstab": {
-        "Typ": "NK",
-        "AT": 11,
-        "PA": 6,
-        "TP": [1, 2],
-        "RW": "lang",
-        "Vorteil": "Dieser Stab ist sehr lang",
-        "Nachteil": "Dieser Stab ist sehr wabbelig"
+      "Nahkampf": {
+        "Zauberstab": {
+          "AT": 11,
+          "PA": 6,
+          "TP": [1, 2],
+          "RW": "lang",
+          "Vorteil": "Dieser Stab ist sehr lang",
+          "Nachteil": "Dieser Stab ist sehr wabbelig"
+        }
       },
-      "Wurfsterne": {
-        "Typ": "FK",
-        "FK": 11,
-        "TP": [1, 2],
-        "LZ": 1,
-        "RW": [10, 20, 30],
-        "Munition": 3,
-        "Vorteil": null,
-        "Nachteil": null
+      "Fernkampf": {
+        "Wurfsterne": {
+          "FK": 11,
+          "TP": [1, 2],
+          "LZ": 1,
+          "RW": [10, 20, 30],
+          "Munition": 3,
+          "Vorteil": null,
+          "Nachteil": null
+        }
       }
     },
     "Magie": {
