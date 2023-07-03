@@ -122,10 +122,16 @@
       ]
     },
     "Götterwirken": {
-      "Windhose": [11],
-      "Unterwasseratmung": [12],
-      "Nebelschwaden": [13],
-      "Eidsegen": []
+      "Liturgien": {
+        "Windhose": [11],
+        "Unterwasseratmung": [12]
+      },
+      "Zeremonien": {
+        "Nebelschwaden": [13]
+      },
+      "Segnungen": [
+        "Eidsegen"
+      ]
     }
   },
   "Vorteile": {

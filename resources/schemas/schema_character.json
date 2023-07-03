@@ -272,20 +272,49 @@
         },
         "Götterwirken": {
           "type": "object",
-          "patternProperties": {
-            "^[A-ZÄÖÜ][A-ZÄÖÜa-zäöüß& ]*$": {
-              "type": "array",
-              "items": [
-                {
-                  "type": "integer"
+          "additionalProperties": false,
+          "properties": {
+            "Liturgien": {
+              "type": "object",
+              "patternProperties": {
+                "^[A-ZÄÖÜ][A-ZÄÖÜa-zäöüß& ]*$": {
+                  "type": "array",
+                  "items": [
+                    {
+                      "type": "integer"
+                    }
+                  ],
+                  "additionalItems": {
+                    "type": "string"
+                  }
                 }
-              ],
-              "additionalItems": {
+              },
+              "additionalProperties": false
+            },
+            "Zeremonien": {
+              "type": "object",
+              "patternProperties": {
+                "^[A-ZÄÖÜ][A-ZÄÖÜa-zäöüß& ]*$": {
+                  "type": "array",
+                  "items": [
+                    {
+                      "type": "integer"
+                    }
+                  ],
+                  "additionalItems": {
+                    "type": "string"
+                  }
+                }
+              },
+              "additionalProperties": false
+            },
+            "Segnungen": {
+              "type": "array",
+              "items": {
                 "type": "string"
               }
             }
-          },
-          "additionalProperties": false
+          }
         }
       },
       "additionalProperties": false,
