@@ -63,14 +63,14 @@ ui <- dashboardPage(
                 h4("Sonderregeln"),
                 uiOutput("ui_char_rules")
               ),
-              tabPanel("Kampf",
-                "Content A"
+              tabPanel(tagList(shiny::icon("shield-virus"), "Kampf"),
+                h2("Kampf")
               ),
-              tabPanel("Konversation",
-                       "Content A"
+              tabPanel(tagList(shiny::icon("comment", class = "fa-solid"), "Konversation"),
+                h2("Konversation")
               ),
-              tabPanel("Action",
-                       "Content A"
+              tabPanel(tagList(shiny::icon("person-running"), "Action"),
+                h2("Action")
               )
             )
           )
