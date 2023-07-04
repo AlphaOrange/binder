@@ -12,6 +12,14 @@
   "Geburtsjahr": 0,
   "Todesjahr": null,
   "Bilder": [],
+  "Erscheinung": {
+    "Aussehen": "",
+    "Kleidung": "",
+    "Gestik": "",
+    "Mimik": "",
+    "Stimme": "",
+    "Besonderheiten": ""
+  },
   "Kampagnen": [],
   "Text": "",
   "Inventar": {

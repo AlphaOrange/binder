@@ -57,6 +57,18 @@
         "pattern": "^[^\\\\\\/\\.]+\\.(jpg|png)$"
       }
     },
+    "Erscheinung": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "Aussehen": "string",
+        "Kleidung": "string",
+        "Gestik": "string",
+        "Mimik": "string",
+        "Stimme": "string",
+        "Besonderheiten": "string"
+      }
+    },
     "Kampagnen": {
       "type": "array",
       "items": {

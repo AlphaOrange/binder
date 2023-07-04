@@ -15,6 +15,14 @@
   "Bilder": [
     "char_cisilius.jpg"
   ],
+  "Erscheinung": {
+    "Aussehen": "Hagerer sehr alter Mann, leicht gebückt, weiße wilde Haare und struppiger Bart",
+    "Kleidung": "Abgenutzte graue Robe mit Bestickung einer beliebigen Akademie, dazu einen inoffiziellen Filzhut, eine Umhängetasche angefüllt mit allerhand Zeug",
+    "Gestik": "Wedelnder erhobener Zeigefinger, wenn er aufgeregt ist",
+    "Mimik": "Wechselt zwischen verwirrt gerunzelten Augenbrauen und einem freudigen Glanz des Verstehens und Erfreuens",
+    "Stimme": "Sehr knarzige Stimme, langsame gedrungene Sprache",
+    "Besonderheiten": "Sehr weltfremd, vergisst in seiner Neugier schon mal Plan, Freund und Feind"
+  },
   "Kampagnen": ["kessel"],
   "Text": "Cisilius lehrte lange Jahrzehnte an der Akademie zu Punin bis ihn ein böser Streich zu Erkenntnis brachte, dass er den Draht zur heutigen Jugend verloren hat. Daraufhin brach er zum ersten Mal wirklich in die Welt außerhalb der heimischen Mauern auf. Da er seit einem misslungenen Experiment sehr vergesslich geworden ist hat niemandem Bescheid gesagt und überdies noch seinen Zauberstab vergessen. Nun schließt er sich Abenteuergruppen an, um zu verstehen, wie junge Menschen wirklich ticken.",
   "Inventar": {
