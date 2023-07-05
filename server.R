@@ -147,39 +147,40 @@ server <- function(input, output, session) {
   })
 
   output$ui_char_weapons <- renderUI({
-    lapply(names(.char()$Stats$Waffen), \(weapon) {
-      item <- .char()$Stats$Waffen[[weapon]]
-      if (item$Typ == "NK") {
-        if (is.null(item$PA)) { item$PA <- .char()$Stats$Grundwerte$AW }
-        val_AT <- item$AT %>% span(class = "binder-value")
-        val_PA <- item$PA %>% span(class = "binder-value")
-        val_TP <- sprintf("%iW6 %s",
-                          item$TP[[1]],
-                          ifelse(item$TP[[2]] >= 0,
-                                 paste("+", item$TP[[2]]),
-                                 paste("-", abs(item$TP[[2]])))) %>% span(class = "binder-value")
-        block <- tagList(val_AT, val_PA, val_TP, paste0("(", item$RW, ")"), strong(weapon))
-      } else {
-        val_AT <- item$FK %>% span(class = "binder-value")
-        val_PA <- .char()$Stats$Grundwerte$AW %>% span(class = "binder-value")
-        val_TP <- sprintf("%iW6 %s",
-                          item$TP[[1]],
-                          ifelse(item$TP[[2]] >= 0,
-                                 paste("+", item$TP[[2]]),
-                                 paste("-", abs(item$TP[[2]])))) %>% span(class = "binder-value")
-        val_load <- paste0("LZ ", item$LZ, " (", item$Munition, ")")
-        val_RW <- item$RW %>% paste(collapse = "/") %>% paste("RW")
-        block <- tagList(val_AT, val_PA, val_TP, val_load, val_RW, strong(weapon))
-      }
-      block <- block %>% div(class = "binder-fight")
-      if (!is.null(item$Vorteil)) {
-        block <- tagList(block, div(paste0("Vorteil: ", item$Vorteil)))
-      }
-      if (!is.null(item$Nachteil)) {
-        block <- tagList(block, div(paste0("Nachteil: ", item$Nachteil)))
-      }
+    weapons_NK <- lapply(names(.char()$Stats$Waffen$Nahkampf), \(weapon) {
+      item <- .char()$Stats$Waffen$Nahkampf[[weapon]]
+      if (is.null(item$PA)) { item$PA <- .char()$Stats$Grundwerte$AW }
+      val_AT <- item$AT %>% span(class = "binder-value")
+      val_PA <- item$PA %>% span(class = "binder-value")
+      val_TP <- sprintf("%iW6 %s",
+                        item$TP[[1]],
+                        ifelse(item$TP[[2]] >= 0,
+                               paste("+", item$TP[[2]]),
+                               paste("-", abs(item$TP[[2]])))) %>% span(class = "binder-value")
+      block <- tagList(val_AT, val_PA, val_TP, paste0("(", item$RW, ")"), strong(weapon)) %>%
+        div(class = "binder-fight")
+      if (!is.null(item$Vorteil))  { block <- tagList(block, div(paste0("Vorteil: ", item$Vorteil))) }
+      if (!is.null(item$Nachteil)) { block <- tagList(block, div(paste0("Nachteil: ", item$Nachteil))) }
       block
-    }) %>% tagList %>% div
+    })
+    weapons_FK <- lapply(names(.char()$Stats$Waffen$Fernkampf), \(weapon) {
+      item <- .char()$Stats$Waffen$Fernkampf[[weapon]]
+      val_AT <- item$FK %>% span(class = "binder-value")
+      val_PA <- .char()$Stats$Grundwerte$AW %>% span(class = "binder-value")
+      val_TP <- sprintf("%iW6 %s",
+                        item$TP[[1]],
+                        ifelse(item$TP[[2]] >= 0,
+                               paste("+", item$TP[[2]]),
+                               paste("-", abs(item$TP[[2]])))) %>% span(class = "binder-value")
+      val_load <- paste0("LZ ", item$LZ, " (", item$Munition, ")")
+      val_RW <- item$RW %>% paste(collapse = "/") %>% paste("RW")
+      block <- tagList(val_AT, val_PA, val_TP, val_load, val_RW, strong(weapon)) %>%
+        div(class = "binder-fight")
+      if (!is.null(item$Vorteil))  { block <- tagList(block, div(paste0("Vorteil: ", item$Vorteil))) }
+      if (!is.null(item$Nachteil)) { block <- tagList(block, div(paste0("Nachteil: ", item$Nachteil))) }
+      block
+    })
+    weapons <- c(weapons_NK, weapons_FK) %>% tagList %>% div
   })
 
   # Magie: Zauber + Zaubersprüche + Rituale
