@@ -117,7 +117,7 @@ binder_validate_all <- function() {
 }
 # binder_validate_all()
 
-#### Detailled file validation ####
+#### Detailed file validation ####
 binder_validate_file <- function(file, type) {
 
   # create validator
@@ -130,3 +130,28 @@ binder_validate_file <- function(file, type) {
 }
 # binder_validate_file("data/characters/morena.json", "character")
 # binder_validate_file("data/campaigns/1-nanduskammer.json", "campaign")
+
+#### Check ids for unambiguousness
+binder_check_ids <- function() {
+
+  # gather ids from all data files
+  json_files <- list.files(path = "data", pattern = "^[^_].*\\.json$", full.names = TRUE, recursive = TRUE)
+
+  dublets <- sapply(json_files, \(file) {
+    single <- read_json(file)
+    c(file, single$ID)
+  }) %>% t %>% data.frame %>% setNames(c("File", "ID")) %>%
+    group_by(ID) %>%
+    summarize(Files = paste(File, collapse = "\n"), Count = n()) %>%
+    filter(Count > 1)
+
+  if (!nrow(dublets)) {
+    cat(bold("CHECK") %+% " keine uneindeutigen IDs gefunden.\n")
+  } else {
+    for (i in seq_len(nrow(dublets))) {
+      cat(bold("ID mehrfach vergeben: ") %+% dublets$ID[i] %+% "\n" %+% dublets$Files[i])
+    }
+  }
+
+}
+binder_check_ids()

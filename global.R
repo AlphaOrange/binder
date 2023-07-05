@@ -9,6 +9,7 @@ library(shiny)
 library(shinydashboard)
 library(rlist)
 library(stringr)
+library(dplyr)
 
 # Load scripts
 source("data_io.R")
