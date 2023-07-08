@@ -50,10 +50,25 @@ load_data <- function() {
   schemas <- load_schemas(parse = FALSE)
 
   # load and assign data
-  data <- list()
   json_files <- list.files(path = "data", pattern = "^[^_].*\\.json$", full.names = TRUE, recursive = TRUE)
+browser()
+  # read all files and split multi-files
+  json_data <- list()
   for (file in json_files) {
-    single <- read_json(file)
+    data <- read_json(file)
+    # check if this is a multi-file
+    if (is.null(names(data))) {
+      # append multi-file content
+      json_data <- c(json_data, data)
+    } else {
+      # append single-file content
+      json_data <- c(json_data, list(data))
+    }
+  }
+
+  # assign json data
+  data <- list()
+  for (single in json_data) {
     # if available auto-complete optional properties with empty vectors/list, single entries remain NULL
     if (single$Typ %in% names(schemas)) {
       for (property in names(schemas[[single$Typ]]$properties)) {

@@ -130,6 +130,7 @@ binder_validate_file <- function(file, type) {
 }
 # binder_validate_file("data/characters/morena.json", "character")
 # binder_validate_file("data/campaigns/1-nanduskammer.json", "campaign")
+# binder_validate_file("data/characters/m_galebfurt.json", "character")
 
 #### Check ids for unambiguousness
 binder_check_ids <- function() {
