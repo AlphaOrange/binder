@@ -32,7 +32,7 @@ load_schemas <- function(parse = TRUE) {
 
   schemas <- lapply(schema_files, \(file) {
     if (parse) {
-      jsonvalidate::json_validator(file)
+      jsonvalidate::json_validator(file, engine = "ajv")
     } else {
       read_json(file)
     }
@@ -51,7 +51,7 @@ load_data <- function() {
 
   # load and assign data
   json_files <- list.files(path = "data", pattern = "^[^_].*\\.json$", full.names = TRUE, recursive = TRUE)
-browser()
+
   # read all files and split multi-files
   json_data <- list()
   for (file in json_files) {

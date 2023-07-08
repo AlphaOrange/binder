@@ -61,12 +61,24 @@
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "Aussehen": "string",
-        "Kleidung": "string",
-        "Gestik": "string",
-        "Mimik": "string",
-        "Stimme": "string",
-        "Besonderheiten": "string"
+        "Aussehen": {
+          "type": "string"
+        },
+        "Kleidung": {
+          "type": "string"
+        },
+        "Gestik": {
+          "type": "string"
+        },
+        "Mimik": {
+          "type": "string"
+        },
+        "Stimme": {
+          "type": "string"
+        },
+        "Besonderheiten": {
+          "type": "string"
+        }
       }
     },
     "Kampagnen": {

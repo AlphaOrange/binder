@@ -1,0 +1,12 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "multiple",
+  "description": "A combination of the other json schemas in an unnamed list",
+  "type": "array",
+  "items": {
+    "anyOf": [
+      { "$ref": "schema_campaign.json" },
+      { "$ref": "schema_character.json" }
+    ]
+  }
+}
