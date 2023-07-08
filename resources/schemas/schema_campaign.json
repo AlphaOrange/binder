@@ -4,7 +4,7 @@
   "description": "A campaign description file for binder",
   "type": "object",
   "additionalProperties": false,
-  "required": ["Typ","ID", "Name", "Tags", "Nummer", "Titelbilder", "Text"],
+  "required": ["Typ","ID", "Name"],
   "properties": {
     "Typ": {
       "type": "string"

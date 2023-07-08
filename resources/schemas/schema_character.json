@@ -4,7 +4,7 @@
   "description": "A character description file for binder",
   "type": "object",
   "additionalProperties": false,
-  "required": ["Typ","ID", "Name", "Tags", "Rolle", "Titel", "Profession", "Geschlecht", "Geburtsjahr", "Bilder", "Kampagnen", "Text", "Inventar", "Spezies", "Sprachen", "Schriften", "Stats", "Vorteile", "Nachteile", "Sonderfertigkeiten", "Sonderregeln"],
+  "required": ["Typ","ID", "Name", "Geburtsjahr"],
   "properties": {
     "Typ": {
       "type": "string"

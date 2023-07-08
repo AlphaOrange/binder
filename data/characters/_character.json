@@ -2,13 +2,15 @@
   "Typ": "character",
   "ID": "",
   "Name": "",
-  "Tags": [],
-  "Rolle": "primary/recurring/once/mention",
-  "Titel": {
+  "Tags": {
+    "Arcs": [],
+    "Orte": [],
     "Weitere": []
   },
+  "Rolle": "primary/recurring/once/mention",
+  "Titel": [],
   "Profession": "",
-  "Geschlecht": "m/w",
+  "Geschlecht": "m/w/d",
   "Geburtsjahr": 0,
   "Todesjahr": null,
   "Bilder": [],
@@ -24,7 +26,7 @@
   "Text": "",
   "Inventar": {
   },
-  "Spezies": "Mensch",
+  "Spezies": "Mensch/Elf/Halbelf/Zwerg",
   "Sprachen": {
   },
   "Schriften": [],
