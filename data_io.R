@@ -43,11 +43,27 @@ load_schemas <- function(parse = TRUE) {
 }
 
 
+# Load all defaults
+load_defaults <- function() {
+
+  defaults_files <- list.files(path = "resources/defaults", pattern = "^[^_].*\\.json$", full.names = TRUE, recursive = TRUE)
+  defaults <- lapply(defaults_files, \(file) {
+    read_json(file)
+  })
+  defaults_names <- sapply(defaults, \(item) { item$Typ })
+  defaults <- defaults %>% setNames(defaults_names)
+
+  defaults
+
+}
+
+
 # Load and validate data
 load_data <- function() {
 
   # load all schemas
   schemas <- load_schemas(parse = FALSE)
+  defaults <- load_defaults()
 
   # load and assign data
   json_files <- list.files(path = "data", pattern = "^[^_].*\\.json$", full.names = TRUE, recursive = TRUE)
@@ -69,26 +85,9 @@ load_data <- function() {
   # assign json data
   data <- list()
   for (single in json_data) {
-    # if available auto-complete optional properties with empty vectors/list, single entries remain NULL
-    if (single$Typ %in% names(schemas)) {
-      for (property in names(schemas[[single$Typ]]$properties)) {
-        if (!(property %in% names(single))) {
-          type <- schemas[[single$Typ]]$properties[[property]]$type
-          if (type == "array") {
-            subtype <- schemas[[single$Typ]]$properties[[property]]$type$items$type
-            if (subtype == "string") {
-              single[[property]] <- character(0)
-            } else if (subtype %in% c("integer", "number")) {
-              single[[property]] <- numeric(0)
-            } else {
-              single[[property]] <- list()
-            }
-          } else if (type == "object") {
-            single[[property]] <- list()
-          }
-        }
-      }
-    }
+    # add defaults
+    single <- list.merge(defaults[[single$Typ]], single)
+    # store data
     data[[single$Typ]][[single$ID]] <- single
   }
 

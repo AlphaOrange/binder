@@ -75,7 +75,7 @@ binder_add_fields <- function(type, fields) {
   for (file in json_files) {
     single <- read_json(file)
     if (single$Typ == type) {
-      single <- list.merge(single, fields)
+      single <- list.merge(fields, single)
     }
     write_json(single, file, pretty = TRUE, auto_unbox = TRUE, null = "null")
   }
