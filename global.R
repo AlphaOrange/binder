@@ -13,6 +13,7 @@ library(dplyr)
 
 # Load scripts
 source("data_io.R")
+source("functions/utils.R")
 
 # Load content
 .res <- load_resources()

@@ -86,7 +86,7 @@ load_data <- function() {
   data <- list()
   for (single in json_data) {
     # add defaults
-    single <- list.merge(defaults[[single$Typ]], single)
+    single <- merge_lists(single, defaults[[single$Typ]])
     # store data
     data[[single$Typ]][[single$ID]] <- single
   }
