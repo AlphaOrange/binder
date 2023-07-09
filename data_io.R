@@ -104,8 +104,8 @@ load_data <- function() {
       # for campaign use campaign number for ordering
       data[[type]] %<>% .[order(list.mapv(data[[type]], Nummer))]
     } else {
-      # for all others use alphabetical order
-      data[[type]] %<>% .[order(names(data[[type]]))]
+      # for all others use alphabetical order of name
+      data[[type]] %<>% .[order(list.mapv(data[[type]], Name))]
     }
     data$labels[[type]] <- list.map(data[[type]], Name) %>%
       setNames(list.map(data[[type]], ID))
@@ -122,6 +122,9 @@ load_data <- function() {
     }
 
   }
+
+  # add general options to selections
+  data$selections$campaign %<>% c("(keine)", .)
 
   # add aggregations to data
   data$lists <- data_lists

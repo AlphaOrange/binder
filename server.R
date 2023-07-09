@@ -9,7 +9,8 @@ server <- function(input, output, session) {
 
     # General filters
     for (category in setdiff(names(filtered), c("campaign", "labels", "selections", "lists"))) {
-      filtered[[category]] %<>% list.filter(any(Kampagnen %in% input$filter_campaigns))
+      filtered[[category]] %<>% list.filter(any(Kampagnen %in% input$filter_campaigns) |
+                                              !length(Kampagnen) & "(keine)" %in% input$filter_campaigns)
     }
 
     # Type-specific filters
@@ -102,8 +103,8 @@ server <- function(input, output, session) {
     }) %>% tagList
   })
 
-  # Voller Name
-  output$txt_char_name      <- renderText(rct_char_name())
+  # Name
+  output$txt_char_name      <- renderText(.char()$Name)
   output$txt_char_name_tab1 <- renderText(rct_char_name())
 
   # Soziodemographie
