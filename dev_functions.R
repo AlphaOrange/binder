@@ -132,7 +132,7 @@ binder_validate_file <- function(file, type) {
 # binder_validate_file("data/campaigns/1-nanduskammer.json", "campaign")
 # binder_validate_file("data/characters/m_galebfurt.json", "character")
 
-#### Check ids for unambiguousness
+#### Check ids for unambiguousness ####
 binder_check_ids <- function() {
 
   # gather ids from all data files
@@ -156,3 +156,48 @@ binder_check_ids <- function() {
 
 }
 binder_check_ids()
+
+#### Check for missing resources ####
+binder_check_missing_resources <- function() {
+
+  # load all data
+  data <- load_data()
+  res  <- load_resources()
+
+  # check magic resources
+  cat("Magie-Ressourcen: ")
+  res_magic <- lapply(data$character, \(char) {
+    c(
+      char$Stats$Magie$Zaubertricks,
+      names(char$Stats$Magie$Zaubersprüche),
+      names(char$Stats$Magie$Rituale)
+    )
+  }) %>% unlist %>% unique
+  missing_magic <- res_magic %>% setdiff(names(res$magic))
+  if (length(missing_magic)) {
+    cat(bold(red("FAIL")) %+% "\nMissing Resources: ")
+    cat(paste(missing_magic, collapse = ", "), "\n")
+  } else {
+    cat(bold("CHECK\n"))
+  }
+
+  # check karmal resources
+  cat("Karmal-Ressourcen: ")
+  res_karmal <- lapply(data$character, \(char) {
+    c(
+      char$Stats$Götterwirken$Segnungen,
+      names(char$Stats$Götterwirken$Liturgien),
+      names(char$Stats$Götterwirken$Zeremonien)
+    )
+  }) %>% unlist %>% unique
+  missing_karmal <- res_karmal %>% setdiff(names(res$karmal))
+  if (length(missing_karmal)) {
+    cat(bold(red("FAIL")) %+% "\nMissing Resources: ")
+    cat(paste(missing_karmal, collapse = ", "), "\n")
+  } else {
+    cat(bold("CHECK\n"))
+  }
+
+}
+binder_check_missing_resources()
+
