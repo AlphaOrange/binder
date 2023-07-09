@@ -1,3 +1,12 @@
 {
-  "Typ": "character"
+  "Typ": "character",
+  "Rolle": "mention",
+  "Geschlecht": "d",
+  "Erscheinung": {},
+  "Kampagnen": [],
+  "Spezies": "Mensch",
+  "Sprachen": {},
+  "Vorteile": {},
+  "Nachteile": {},
+  "Sonderregeln": {}
 }

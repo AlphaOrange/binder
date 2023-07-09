@@ -32,36 +32,42 @@ ui <- dashboardPage(
               width = NULL,
               tabPanel("Steckbrief",
                 uiOutput("gallery_character", class = "binder-gallery"),
+                h2(textOutput("txt_char_name_tab1")),
                 div(class = "binder-tagbox",
                   uiOutput("ui_char_tags")
                 ),
-                textOutput("txt_char_sozio"),
+                div(em(textOutput("txt_char_sozio"))),
                 textOutput("txt_char_desc"),
-                h3("Kampagnen"),
-                textOutput("txt_char_campaigns"),
-                h3("Inventar"),
-                uiOutput("ui_char_inventory"),
-                h3("Stats"),
-                uiOutput("ui_char_attr"),
-                uiOutput("ui_char_base"),
-                h4("Fertigkeiten"),
-                uiOutput("ui_char_skills"),
-                h4("Kampf"),
-                uiOutput("ui_char_fight"),
-                h5("Waffen"),
-                uiOutput("ui_char_weapons"),
-                h4("Magie"),
-                uiOutput("ui_char_magic"),
-                h4("Götterwirken"),
-                uiOutput("ui_char_karmal"),
-                h4("Sonderfertigkeiten"),
-                uiOutput("ui_char_abilities"),
-                h4("Vorteile"),
-                uiOutput("ui_char_advantages"),
-                h4("Nachteile"),
-                uiOutput("ui_char_disadvantages"),
-                h4("Sonderregeln"),
-                uiOutput("ui_char_rules")
+                conditionalPanel(
+                  condition = "output.cond_char_hasAppearance == true",
+                  h3("Erscheinung"),
+                  uiOutput("ui_char_appearance")
+                ),
+                div(em(textOutput("txt_char_languages"))),
+                conditionalPanel(
+                  condition = "output.cond_char_hasAnySpecial == true",
+                  h3("Besonderes"),
+                  conditionalPanel(
+                    condition = "output.cond_char_hasAdvantages == true",
+                    h4("Vorteile"),
+                    uiOutput("ui_char_advantages")
+                  ),
+                  conditionalPanel(
+                    condition = "output.cond_char_hasDisadvantages == true",
+                    h4("Nachteile"),
+                    uiOutput("ui_char_disadvantages")
+                  ),
+                  conditionalPanel(
+                    condition = "output.cond_char_hasRules == true",
+                    h4("Sonderregeln"),
+                    uiOutput("ui_char_rules")
+                  )
+                ),
+                conditionalPanel(
+                  condition = "output.cond_char_hasCampaigns == true",
+                  h3("Kampagnen"),
+                  uiOutput("ui_char_campaigns")
+                )
               ),
               tabPanel(tagList(shiny::icon("shield-virus"), "Kampf"),
                 h2("Kampf")
@@ -71,6 +77,39 @@ ui <- dashboardPage(
               ),
               tabPanel(tagList(shiny::icon("person-running"), "Action"),
                 h2("Action")
+              ),
+              tabPanel("Alt"
+                # uiOutput("gallery_character", class = "binder-gallery"),
+                # div(class = "binder-tagbox",
+                #   uiOutput("ui_char_tags")
+                # ),
+                # textOutput("txt_char_sozio"),
+                # textOutput("txt_char_desc"),
+                # h3("Kampagnen"),
+                # textOutput("txt_char_campaigns"),
+                # h3("Inventar"),
+                # uiOutput("ui_char_inventory"),
+                # h3("Stats"),
+                # uiOutput("ui_char_attr"),
+                # uiOutput("ui_char_base"),
+                # h4("Fertigkeiten"),
+                # uiOutput("ui_char_skills"),
+                # h4("Kampf"),
+                # uiOutput("ui_char_fight"),
+                # h5("Waffen"),
+                # uiOutput("ui_char_weapons"),
+                # h4("Magie"),
+                # uiOutput("ui_char_magic"),
+                # h4("Götterwirken"),
+                # uiOutput("ui_char_karmal"),
+                # h4("Sonderfertigkeiten"),
+                # uiOutput("ui_char_abilities"),
+                # h4("Vorteile"),
+                # uiOutput("ui_char_advantages"),
+                # h4("Nachteile"),
+                # uiOutput("ui_char_disadvantages"),
+                # h4("Sonderregeln"),
+                # uiOutput("ui_char_rules")
               )
             )
           )

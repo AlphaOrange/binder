@@ -36,6 +36,54 @@ server <- function(input, output, session) {
   })
 
 
+  #### Preprocessed Reactives ####
+
+  # Voller Name
+  rct_char_name <- reactive({
+    if (length(.char()$Titel)) {
+      paste(paste(.char()$Titel, collapse = " "), .char()$Name)
+    } else {
+      .char()$Name
+    }
+  })
+
+  # Professionsbezeichnung
+  rct_char_profession <- reactive({
+    ifelse(is.null(.char()$Profession), "ohne Profession", .char()$Profession)
+  })
+
+
+  #### JS Conditions ####
+
+  # Charakter hat: Erscheinung
+  output$cond_char_hasAppearance <- reactive(length(.char()$Erscheinung) > 0)
+  outputOptions(output, "cond_char_hasAppearance", suspendWhenHidden = FALSE)
+
+  # Charakter hat: Vorteile
+  output$cond_char_hasAdvantages <- reactive(length(.char()$Vorteile) > 0)
+  outputOptions(output, "cond_char_hasAdvantages", suspendWhenHidden = FALSE)
+
+  # Charakter hat: Nachteile
+  output$cond_char_hasDisadvantages <- reactive(length(.char()$Nachteile) > 0)
+  outputOptions(output, "cond_char_hasDisadvantages", suspendWhenHidden = FALSE)
+
+  # Charakter hat: Sonderregeln
+  output$cond_char_hasRules <- reactive(length(.char()$Sonderregeln) > 0)
+  outputOptions(output, "cond_char_hasRules", suspendWhenHidden = FALSE)
+
+  # Charakter hat: Vorteile oder Nachteile oder Sonderregeln
+  output$cond_char_hasAnySpecial <- reactive({
+    length(.char()$Vorteile) > 0 ||
+    length(.char()$Nachteile) > 0 ||
+    length(.char()$Sonderregeln) > 0
+  })
+  outputOptions(output, "cond_char_hasAnySpecial", suspendWhenHidden = FALSE)
+
+  # Charakter hat: Kampagnen
+  output$cond_char_hasCampaigns <- reactive(length(.char()$Kampagnen) > 0)
+  outputOptions(output, "cond_char_hasCampaigns", suspendWhenHidden = FALSE)
+
+
   #### Character Sheet Outputs ####
 
   # Bildergalerie
@@ -55,13 +103,8 @@ server <- function(input, output, session) {
   })
 
   # Voller Name
-  output$txt_char_name <- renderText({
-    if (length(.char()$Titel)) {
-      paste(paste(.char()$Titel, collapse = " "), .char()$Name)
-    } else {
-      .char()$Name
-    }
-  })
+  output$txt_char_name      <- renderText(rct_char_name())
+  output$txt_char_name_tab1 <- renderText(rct_char_name())
 
   # Soziodemographie
   output$txt_char_sozio <- renderText({
@@ -71,8 +114,9 @@ server <- function(input, output, session) {
     age <- ifelse(dead, .char()$Todesjahr - .char()$Geburtsjahr,
                         .res$current_year - .char()$Geburtsjahr)
 
-    sprintf("%s / %s / %s (%i)",
-      .char()$Profession,
+    sprintf("%s / %s / %s / %s (%i)",
+      rct_char_profession(),
+      .char()$Spezies,
       .char()$Geschlecht,
       paste(c(born, died), collapse = " "),
       age
@@ -84,10 +128,33 @@ server <- function(input, output, session) {
     .char()$Text
   })
 
+  # Charakterbeschreibung
+  output$ui_char_appearance <- renderUI({
+    icons <- list(Aussehen = "user", Kleidung = "shirt", Gestik = "hand",
+                  Mimik = "face-smile", Stimme = "comment-dots", Besonderheiten = "star")
+    lapply(names(.char()$Erscheinung), \(item) {
+        tagList(icon(icons[[item]], class = "fa-solid"), .char()$Erscheinung[[item]]) %>%
+        (tags$li)
+    }) %>% (tags$ul)
+  })
+
+  # Soziodemographie
+  output$txt_char_languages <- renderText({
+    if (length(.char()$Sprachen)) {
+      sapply(names(.char()$Sprachen), \(language) {
+        sprintf("%s (%s)", language, as.roman(.char()$Sprachen[[language]]))
+      }) %>%
+        paste(collapse = ", ") %>%
+        paste("Spricht:", .)
+    }
+  })
+
   # Kampagnen des Charakters
-  output$txt_char_campaigns <- renderText({
-    .data$labels$campaign[unlist(.char()$Kampagnen)] %>%
-      paste0('"', ., '"', collapse = ", ")
+  output$ui_char_campaigns <- renderUI({
+    campaigns <- .data$labels$campaign[unlist(.char()$Kampagnen)]
+    lapply(campaigns, \(campaign) {
+      campaign %>% (tags$li)
+    }) %>% (tags$ul)
   })
 
   # Inventar des Charakters
