@@ -83,7 +83,15 @@ ui <- dashboardPage(
                 uiOutput("ui_char_attr_tab2"),
                 uiOutput("ui_char_base_tab2"),
                 h3("Fertigkeiten"),
-                uiOutput("ui_char_skills_tab2")
+                uiOutput("ui_char_skills_tab2"),
+                h4("Kampf"),
+                uiOutput("ui_char_fight"),
+                h4("Waffen"),
+                uiOutput("ui_char_weapons"),
+                h4("Magie"),
+                uiOutput("ui_char_magic_tab2"),
+                h4("Götterwirken"),
+                uiOutput("ui_char_karmal_tab2")
               ),
               tabPanel(tagList(shiny::icon("comment", class = "fa-solid"), "Konversation"),
                 h2("Konversation"),
@@ -93,7 +101,11 @@ ui <- dashboardPage(
               tabPanel(tagList(shiny::icon("person-running"), "Action"),
                 h2("Action"),
                 h3("Fertigkeiten"),
-                uiOutput("ui_char_skills_tab4")
+                uiOutput("ui_char_skills_tab4"),
+                h4("Magie"),
+                uiOutput("ui_char_magic_tab4"),
+                h4("Götterwirken"),
+                uiOutput("ui_char_karmal_tab4")
               ),
               tabPanel("Alt"
                 # uiOutput("gallery_character", class = "binder-gallery"),

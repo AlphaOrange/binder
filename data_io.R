@@ -17,6 +17,10 @@ load_resources <- function() {
     res[[type]] <- c(res[[type]], single)
   }
 
+  # Processing
+  res$.proc$magic_fight  <- res$magic  %>% list.filter("fight" %in% tags) %>% names
+  res$.proc$karmal_fight <- res$karmal %>% list.filter("fight" %in% tags) %>% names
+
   res
 
 }

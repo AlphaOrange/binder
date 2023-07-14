@@ -79,6 +79,57 @@ server <- function(input, output, session) {
     tags
   }
 
+  # Generate Magic UI
+  fct_char_magic <- function(tag = "all") {
+    names_spells <- names(.char()$Stats$Magie$Zaubersprüche)
+    if (tag == "fight") { names_spells <- names_spells %>% intersect(.res$.proc$magic_fight) }
+    magic_spells <- lapply(names_spells, \(action) {
+      details    <- .res$magic[[action]]
+      value      <- .char()$Stats$Magie$Zaubersprüche[[action]][1] %>% span(class = "binder-value")
+      extensions <- .char()$Stats$Magie$Zaubersprüche[[action]][-1] %>% paste(collapse = ", ")
+      if (extensions != "") { extensions <- paste0("(", extensions, ")") }
+      attributes <- details$attributes %>% lapply(\(attribute) {
+        span(.char()$Stats$Eigenschaften[[attribute]],
+             class = sprintf("binder-attr-small binder-attr-%s", attribute))
+      }) %>% tagList
+      tagList(
+        attributes,
+        value,
+        action,
+        extensions
+      ) %>% div(class = sprintf("binder-magic binder-magic-%s", details$type))
+    }) %>% tagList
+
+    magic_rituals <- lapply(names(.char()$Stats$Magie$Rituale), \(action) {
+      details    <- .res$magic[[action]]
+      value      <- .char()$Stats$Magie$Rituale[[action]][1] %>% span(class = "binder-value")
+      extensions <- .char()$Stats$Magie$Rituale[[action]][-1] %>% paste(collapse = ", ")
+      if (extensions != "") { extensions <- paste0("(", extensions, ")") }
+      attributes <- details$attributes %>% lapply(\(attribute) {
+        span(.char()$Stats$Eigenschaften[[attribute]],
+             class = sprintf("binder-attr-small binder-attr-%s", attribute))
+      }) %>% tagList
+      tagList(
+        attributes,
+        value,
+        action,
+        extensions
+      ) %>% div(class = sprintf("binder-magic binder-magic-%s", details$type))
+    }) %>% tagList
+
+    magic_tricks <- lapply(.char()$Stats$Magie$Zaubertricks, \(action) {
+      details    <- .res$magic[[action]]
+      action %>% div(class = sprintf("binder-magic binder-magic-%s", details$type))
+    }) %>% tagList
+
+    if (tag == "fight") {
+      div(tagList(magic_spells))
+    } else {
+      div(tagList(magic_spells, magic_rituals, magic_tricks))
+    }
+  }
+
+
 
   #### JS Conditions ####
 
@@ -311,49 +362,8 @@ server <- function(input, output, session) {
   })
 
   # Magie: Zauber + Zaubersprüche + Rituale
-  output$ui_char_magic <- renderUI({
-
-    magic_spells <- lapply(names(.char()$Stats$Magie$Zaubersprüche), \(action) {
-      details    <- .res$magic[[action]]
-      value      <- .char()$Stats$Magie$Zaubersprüche[[action]][1] %>% span(class = "binder-value")
-      extensions <- .char()$Stats$Magie$Zaubersprüche[[action]][-1] %>% paste(collapse = ", ")
-      if (extensions != "") { extensions <- paste0("(", extensions, ")") }
-      attributes <- details$attributes %>% lapply(\(attribute) {
-        span(.char()$Stats$Eigenschaften[[attribute]],
-             class = sprintf("binder-attr-small binder-attr-%s", attribute))
-      }) %>% tagList
-      tagList(
-        attributes,
-        value,
-        action,
-        extensions
-      ) %>% div(class = sprintf("binder-magic binder-magic-%s", details$type))
-    }) %>% tagList
-
-    magic_rituals <- lapply(names(.char()$Stats$Magie$Rituale), \(action) {
-      details    <- .res$magic[[action]]
-      value      <- .char()$Stats$Magie$Rituale[[action]][1] %>% span(class = "binder-value")
-      extensions <- .char()$Stats$Magie$Rituale[[action]][-1] %>% paste(collapse = ", ")
-      if (extensions != "") { extensions <- paste0("(", extensions, ")") }
-      attributes <- details$attributes %>% lapply(\(attribute) {
-        span(.char()$Stats$Eigenschaften[[attribute]],
-             class = sprintf("binder-attr-small binder-attr-%s", attribute))
-      }) %>% tagList
-      tagList(
-        attributes,
-        value,
-        action,
-        extensions
-      ) %>% div(class = sprintf("binder-magic binder-magic-%s", details$type))
-    }) %>% tagList
-
-    magic_tricks <- lapply(.char()$Stats$Magie$Zaubertricks, \(action) {
-      details    <- .res$magic[[action]]
-      action %>% div(class = sprintf("binder-magic binder-magic-%s", details$type))
-    }) %>% tagList
-
-    div(tagList(magic_spells, magic_rituals, magic_tricks))
-  })
+  output$ui_char_magic_tab2 <- renderUI({ fct_char_magic(tag = "fight") })
+  output$ui_char_magic_tab4 <- renderUI({ fct_char_magic() })
 
   # Götterwirken: Liturgien + Segnungen + Zeremonien
   output$ui_char_karmal <- renderUI({
