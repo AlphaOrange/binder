@@ -4,11 +4,13 @@ library(jsonlite)
 library(shiny)
 library(shinydashboard)
 library(rlist)
+library(dplyr)
 library(stringr)
 library(crayon)
 
 # Load scripts
 source("data_io.R")
+source("functions/utils.R")
 
 
 ##### Editor #####
@@ -63,8 +65,8 @@ binder_add_tag <- function(tag, types, tag_type = "Tags") {
   }
 }
 # binder_add_tag("survival")
-binder_add_tag("survival")
-binder_add_tag("Phantasien", tag_type = "Orte")
+# binder_add_tag("survival")
+# binder_add_tag("Phantasien", tag_type = "Orte")
 
 #### Update data jsons via updated template ####
 binder_add_fields <- function(type, fields) {
@@ -138,10 +140,11 @@ binder_check_ids <- function() {
   # gather ids from all data files
   json_files <- list.files(path = "data", pattern = "^[^_].*\\.json$", full.names = TRUE, recursive = TRUE)
 
-  dublets <- sapply(json_files, \(file) {
-    single <- read_json(file)
-    c(file, single$ID)
-  }) %>% t %>% data.frame %>% setNames(c("File", "ID")) %>%
+  dublets <- lapply(json_files, \(file) {
+    single <- read_json(file) %>% list.flatten
+    ids <- single[names(single) == "ID"] %>% unlist
+    bind_cols(file, ids) %>% setNames(c("File", "ID"))
+  }) %>% bind_rows %>%
     group_by(ID) %>%
     summarize(Files = paste(File, collapse = "\n"), Count = n()) %>%
     filter(Count > 1)
@@ -155,7 +158,7 @@ binder_check_ids <- function() {
   }
 
 }
-binder_check_ids()
+# binder_check_ids()
 
 #### Check for missing resources ####
 binder_check_missing_resources <- function() {
@@ -199,5 +202,5 @@ binder_check_missing_resources <- function() {
   }
 
 }
-binder_check_missing_resources()
+# binder_check_missing_resources()
 

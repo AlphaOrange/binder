@@ -37,7 +37,7 @@ server <- function(input, output, session) {
   })
 
 
-  #### Preprocessed Reactives ####
+  #### Preprocessed Reactives and Functions ####
 
   # Voller Name
   rct_char_name <- reactive({
@@ -52,6 +52,32 @@ server <- function(input, output, session) {
   rct_char_profession <- reactive({
     ifelse(is.null(.char()$Profession), "ohne Profession", .char()$Profession)
   })
+
+  # Alter, Geburts- und Todeskennzeichnung
+  rct_char_age <- reactive({
+    dead <- !is.null(.char()$Todesjahr)
+    born <- paste0("*", .char()$Geburtsjahr)
+    died <- ifelse(dead, paste0("✝", .char()$Todesjahr), "")
+    age <- ifelse(dead, .char()$Todesjahr - .char()$Geburtsjahr,
+                  .res$current_year - .char()$Geburtsjahr)
+    list(born = born, died = died, age = age)
+  })
+
+  # Generate Tags Container
+  fct_char_tags <- function(data, selection, deadmark = FALSE) {
+    tags <- names(data)
+    if (!missing(selection)) { tags <- intersect(tags, selection) }
+    tags <- lapply(tags, \(tag_type) {
+      .char()$Tags[[tag_type]] %>%
+        lapply(\(tag) { span(tag, class = c("binder-tag-all", paste0("binder-tag-", tag_type))) }) %>%
+        tagList
+    }) %>% tagList
+    if (deadmark && !is.null(.char()$Todesjahr)) {
+      tags <- span("verstorben", class = c("binder-tag-all", "binder-tag-dead")) %>%
+        tagList(., tags)
+    }
+    tags
+  }
 
 
   #### JS Conditions ####
@@ -94,34 +120,35 @@ server <- function(input, output, session) {
     }) %>% tagList
   })
 
-  # Tags
-  output$ui_char_tags <- renderUI({
-    lapply(names(.char()$Tags), \(tag_type) {
-      .char()$Tags[[tag_type]] %>%
-        lapply(\(tag) { span(tag, class = c("binder-tag-all", paste0("binder-tag-", tag_type))) }) %>%
-        tagList
-    }) %>% tagList
+  # Avatar
+  output$ui_avatar <- renderUI({
+    if (length(.char()$Bilder)) {
+      image <- first(.char()$Bilder)
+      img(src = file.path("pix", image))
+    }
   })
+
+  # Tags
+  output$ui_char_tags <- renderUI({ fct_char_tags(.char()$Tags) })
+  output$ui_char_tags_fight <- renderUI({ fct_char_tags(.char()$Tags, selection = "Kampf", deadmark = TRUE) })
 
   # Name
   output$txt_char_name      <- renderText(.char()$Name)
   output$txt_char_name_tab1 <- renderText(rct_char_name())
+  output$txt_char_name_tab2 <- renderText(.char()$Name)
 
   # Soziodemographie
   output$txt_char_sozio <- renderText({
-    dead <- !is.null(.char()$Todesjahr)
-    born <- paste0("*", .char()$Geburtsjahr)
-    died <- ifelse(dead, paste0("✝", .char()$Todesjahr), "")
-    age <- ifelse(dead, .char()$Todesjahr - .char()$Geburtsjahr,
-                        .res$current_year - .char()$Geburtsjahr)
-
     sprintf("%s / %s / %s / %s (%i)",
       rct_char_profession(),
       .char()$Spezies,
       .char()$Geschlecht,
-      paste(c(born, died), collapse = " "),
-      age
+      paste(c(rct_char_age()$born, rct_char_age()$died), collapse = " "),
+      rct_char_age()$age
     )
+  })
+  output$txt_char_sozio_tab2 <- renderText({
+    sprintf("%s (%i)", .char()$Spezies, rct_char_age()$age)
   })
 
   # Charakterbeschreibung
@@ -167,7 +194,7 @@ server <- function(input, output, session) {
   })
 
   # Attribute
-  output$ui_char_attr <- renderUI({
+  output$ui_char_attr_tab2 <- renderUI({
     lapply(.res$attributes, \(attr) {
       paste(attr, .char()$Stats$Eigenschaften[[attr]]) %>%
         span(class = c("binder-attr", sprintf("binder-attr-%s", attr)))
@@ -175,7 +202,7 @@ server <- function(input, output, session) {
   })
 
   # Basiswerte
-  output$ui_char_base <- renderUI({
+  output$ui_char_base_tab2 <- renderUI({
     armor <- paste("RS", .char()$Stats$Rüstungsschutz) %>%
       span(class = "binder-base") %>% list
     lapply(.res$basevalues, \(base) {
@@ -185,15 +212,47 @@ server <- function(input, output, session) {
   })
 
   # Fertigkeiten
-  output$ui_char_skills <- renderUI({
-    lapply(names(.char()$Stats$Fertigkeiten), \(feat) {
+  output$ui_char_skills_tab2 <- renderUI({
+    lapply(.res$fightskills, \(feat) {
       attributes <- .res$skills[[feat]] %>% lapply(\(attribute) {
         span(.char()$Stats$Eigenschaften[[attribute]],
              class = sprintf("binder-attr-small binder-attr-%s", attribute))
       }) %>% tagList
+      value <- ifelse(feat %in% names(.char()$Stats$Fertigkeiten),
+                      .char()$Stats$Fertigkeiten[[feat]], 0)
       tagList(
         attributes,
-        .char()$Stats$Fertigkeiten[[feat]] %>% span(class = "binder-value"),
+        value %>% span(class = "binder-value"),
+        feat
+      ) %>% div(class = "binder-feat")
+    }) %>% tagList %>% div
+  })
+  output$ui_char_skills_tab3 <- renderUI({
+    lapply(.res$talkskills, \(feat) {
+      attributes <- .res$skills[[feat]] %>% lapply(\(attribute) {
+        span(.char()$Stats$Eigenschaften[[attribute]],
+             class = sprintf("binder-attr-small binder-attr-%s", attribute))
+      }) %>% tagList
+      value <- ifelse(feat %in% names(.char()$Stats$Fertigkeiten),
+                      .char()$Stats$Fertigkeiten[[feat]], 0)
+      tagList(
+        attributes,
+        value %>% span(class = "binder-value"),
+        feat
+      ) %>% div(class = "binder-feat")
+    }) %>% tagList %>% div
+  })
+  output$ui_char_skills_tab4 <- renderUI({
+    lapply(names(.res$skills), \(feat) {
+      attributes <- .res$skills[[feat]] %>% lapply(\(attribute) {
+        span(.char()$Stats$Eigenschaften[[attribute]],
+             class = sprintf("binder-attr-small binder-attr-%s", attribute))
+      }) %>% tagList
+      value <- ifelse(feat %in% names(.char()$Stats$Fertigkeiten),
+                      .char()$Stats$Fertigkeiten[[feat]], 0)
+      tagList(
+        attributes,
+        value %>% span(class = "binder-value"),
         feat
       ) %>% div(class = "binder-feat")
     }) %>% tagList %>% div

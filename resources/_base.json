@@ -29,6 +29,18 @@
     "Ausweichen": "AW",
     "Initiative": "INI",
     "Geschwindigkeit": "GS"
-  }
+  },
+
+  "fightskills": [
+    "Fliegen", "Klettern", "Körperbeherrschung", "Kraftakt",
+    "Reiten", "Schwimmen", "Selbstbeherrschung", "Verbergen",
+    "Einschüchtern", "Tierkunde", "Kriegskunst", "Heilkunde Wunden"
+  ],
+
+  "talkskills": [
+    "Taschendiebstahl", "Zechen", "Bekehren und Überzeugen", "Betören",
+    "Einschüchtern", "Etikette", "Gassenwissen", "Menschenkenntnis",
+    "Überreden", "Willenskraft", "Heilkunde Seele"
+  ]
 
 }

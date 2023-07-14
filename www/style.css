@@ -14,6 +14,7 @@ html {
 
 h2 {
   margin-top: 0;
+  margin-bottom: 2px;
 }
 
 
@@ -28,6 +29,18 @@ h2 {
 .binder-gallery img {
   width: 100%;
   margin: 0 0 16px;
+}
+
+
+/* UI Tags + Texts */
+
+.binder-soziobox {
+  margin-bottom: 6px;
+  font-style: italic;
+}
+
+.binder-tagbox {
+  margin-bottom: 6px;
 }
 
 .binder-tagbox span {
@@ -47,6 +60,11 @@ h2 {
 
 .binder-tag-Orte {
   background: #f99;
+}
+
+.binder-tag-dead {
+  color: #fff;
+  background: #900;
 }
 
 /* STATS */

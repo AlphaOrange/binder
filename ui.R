@@ -33,10 +33,12 @@ ui <- dashboardPage(
               tabPanel("Steckbrief",
                 uiOutput("gallery_character", class = "binder-gallery"),
                 h2(textOutput("txt_char_name_tab1")),
+                div(class = "binder-soziobox",
+                    textOutput("txt_char_sozio")
+                ),
                 div(class = "binder-tagbox",
                   uiOutput("ui_char_tags")
                 ),
-                div(em(textOutput("txt_char_sozio"))),
                 textOutput("txt_char_desc"),
                 conditionalPanel(
                   condition = "output.cond_char_hasAppearance == true",
@@ -70,13 +72,28 @@ ui <- dashboardPage(
                 )
               ),
               tabPanel(tagList(shiny::icon("shield-virus"), "Kampf"),
-                h2("Kampf")
+                uiOutput("ui_avatar", class = "binder-gallery"),
+                h2(textOutput("txt_char_name_tab2")),
+                div(class = "binder-soziobox",
+                  textOutput("txt_char_sozio_tab2")
+                ),
+                div(class = "binder-tagbox",
+                  uiOutput("ui_char_tags_fight")
+                ),
+                uiOutput("ui_char_attr_tab2"),
+                uiOutput("ui_char_base_tab2"),
+                h3("Fertigkeiten"),
+                uiOutput("ui_char_skills_tab2")
               ),
               tabPanel(tagList(shiny::icon("comment", class = "fa-solid"), "Konversation"),
-                h2("Konversation")
+                h2("Konversation"),
+                h3("Fertigkeiten"),
+                uiOutput("ui_char_skills_tab3")
               ),
               tabPanel(tagList(shiny::icon("person-running"), "Action"),
-                h2("Action")
+                h2("Action"),
+                h3("Fertigkeiten"),
+                uiOutput("ui_char_skills_tab4")
               ),
               tabPanel("Alt"
                 # uiOutput("gallery_character", class = "binder-gallery"),
