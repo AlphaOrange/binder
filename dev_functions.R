@@ -47,25 +47,41 @@ binder_create <- function(type, id, ...) {
 #               Kampagnen = list("feniasspuren"))
 
 #### Quickly apply tag via list selection ####
-binder_add_tag <- function(tag, types, tag_type = "Tags") {
+binder_add_tag <- function(tag, types = "all", tag_type = "Weitere") {
   # loop all json data files: read, modify and write
   data <- list()
   json_files <- list.files(path = "data", pattern = "^[^_].*\\.json$", full.names = TRUE, recursive = TRUE)
   cat(bold(sprintf("Vertaggen mit '%s'\n", tag)))
   for (file in json_files) {
-    single <- read_json(file)
-    if (missing(types) || single$Typ %in% types) {
-      line <- sprintf("[%s] %s: (j/n)", single$Typ, single$Name)
-      answer <- readline(line)
-      if (answer == "j") {
-        single[[tag_type]] <- unique(c(single[[tag_type]], tag))
-        write_json(single, file, pretty = TRUE, auto_unbox = TRUE, null = "null")
+    data <- read_json(file)
+    if (is.null(names(data))) {
+      # Multi-json
+      data <- lapply(data, \(single) {
+        if (types == "all" || single$Typ %in% types) {
+          line <- sprintf("[%s] %s: (j/n)", single$Typ, single$Name)
+          answer <- readline(line)
+          if (answer == "j") {
+            single$Tags[[tag_type]] <- unique(c(single$Tags[[tag_type]], tag))
+          }
+          single
+        }
+      })
+      write_json(data, file, pretty = TRUE, auto_unbox = TRUE, null = "null")
+    } else {
+      # single-json
+      if (types == "all" || data$Typ %in% types) {
+        line <- sprintf("[%s] %s: (j/n)", data$Typ, data$Name)
+        answer <- readline(line)
+        if (answer == "j") {
+          data$Tags[[tag_type]] <- unique(c(data$Tags[[tag_type]], tag))
+          write_json(data, file, pretty = TRUE, auto_unbox = TRUE, null = "null")
+        }
       }
     }
   }
 }
-# binder_add_tag("survival")
-# binder_add_tag("survival")
+# binder_add_tag("survival", "character", "Test")
+# binder_add_tag("survival", "character", "Orte")
 # binder_add_tag("Phantasien", tag_type = "Orte")
 
 #### Update data jsons via updated template ####

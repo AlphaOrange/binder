@@ -1,0 +1,16 @@
+[
+  {
+    "Typ": "character",
+    "ID": "jasper",
+    "Name": "Jasper",
+    "Profession": "Schmied",
+    "Tags": {
+      "Orte": [
+        "Honingen"
+      ]
+    },
+    "Rolle": "once",
+    "Geschlecht": "m",
+    "Geburtsjahr": 1010
+  }
+]
