@@ -179,6 +179,19 @@ server <- function(input, output, session) {
     }
   }
 
+  # Funktion: Textbaustein aus unterschiedlich aufgebauten Detaillisten
+  fct_details2text <- function(name, details) {
+    if (length(details) == 0) {
+      name
+    } else if (length(details) == 2) {
+      paste0(name, " ", as.roman(details[[1]]), ": ", details[[2]])
+    } else if (is.numeric(details[[1]])) {
+      paste0(name, " ", as.roman(details[[1]]))
+    } else {
+      paste0(name, ": ", details[[1]])
+    }
+  }
+
 
   #### JS Conditions ####
 
@@ -213,15 +226,13 @@ server <- function(input, output, session) {
 
   #### Character Sheet Outputs ####
 
-  # Bildergalerie
-  output$gallery_character <- renderUI({
+  # Bildergalerie / Portrait
+  output$ui_char_gallery_tab1 <- renderUI({
     lapply(.char()$Bilder, \(image) {
       img(src = file.path("pix", image))
     }) %>% tagList
   })
-
-  # Avatar
-  output$ui_avatar <- renderUI({
+  output$ui_char_gallery_tab2 <- renderUI({
     if (length(.char()$Bilder)) {
       image <- first(.char()$Bilder)
       img(src = file.path("pix", image))
@@ -229,8 +240,8 @@ server <- function(input, output, session) {
   })
 
   # Tags
-  output$ui_char_tags <- renderUI({ fct_char_tags(.char()$Tags) })
-  output$ui_char_tags_fight <- renderUI({ fct_char_tags(.char()$Tags, selection = "Kampf", deadmark = TRUE) })
+  output$ui_char_tags_tab1 <- renderUI({ fct_char_tags(.char()$Tags) })
+  output$ui_char_tags_tab2 <- renderUI({ fct_char_tags(.char()$Tags, selection = "Kampf", deadmark = TRUE) })
 
   # Name
   output$txt_char_name      <- renderText(.char()$Name)
@@ -238,7 +249,7 @@ server <- function(input, output, session) {
   output$txt_char_name_tab2 <- renderText(.char()$Name)
 
   # Soziodemographie
-  output$txt_char_sozio <- renderText({
+  output$txt_char_sozio_tab1 <- renderText({
     sprintf("%s / %s / %s / %s (%i)",
       rct_char_profession(),
       .char()$Spezies,
@@ -252,12 +263,12 @@ server <- function(input, output, session) {
   })
 
   # Charakterbeschreibung
-  output$txt_char_desc <- renderText({
+  output$txt_char_desc_tab1 <- renderText({
     .char()$Text
   })
 
   # Charakterbeschreibung
-  output$ui_char_appearance <- renderUI({
+  output$ui_char_appearance_tab1 <- renderUI({
     icons <- list(Aussehen = "user", Kleidung = "shirt", Gestik = "hand",
                   Mimik = "face-smile", Stimme = "comment-dots", Besonderheiten = "star")
     lapply(names(.char()$Erscheinung), \(item) {
@@ -267,7 +278,7 @@ server <- function(input, output, session) {
   })
 
   # Soziodemographie
-  output$txt_char_languages <- renderText({
+  output$txt_char_languages_tab1 <- renderText({
     if (length(.char()$Sprachen)) {
       sapply(names(.char()$Sprachen), \(language) {
         sprintf("%s (%s)", language, as.roman(.char()$Sprachen[[language]]))
@@ -278,7 +289,7 @@ server <- function(input, output, session) {
   })
 
   # Kampagnen des Charakters
-  output$ui_char_campaigns <- renderUI({
+  output$ui_char_campaigns_tab1 <- renderUI({
     campaigns <- .data$labels$campaign[unlist(.char()$Kampagnen)]
     lapply(campaigns, \(campaign) {
       campaign %>% (tags$li)
@@ -286,7 +297,7 @@ server <- function(input, output, session) {
   })
 
   # Inventar des Charakters
-  output$ui_char_inventory <- renderUI({
+  output$ui_char_inventory_tab3 <- renderUI({
     lapply(names(.char()$Inventar), \(item) {
       sprintf("%sx %s", .char()$Inventar[[item]], item) %>%
         (tags$li)
@@ -359,7 +370,7 @@ server <- function(input, output, session) {
   })
 
   # Kampftechniken
-  output$ui_char_fight <- renderUI({
+  output$ui_char_fight_tab2 <- renderUI({
     lapply(names(.res$fighting), \(fight) {
       if (fight %in% names(.char()$Stats$Kampftechniken)) {
         value <- .char()$Stats$Kampftechniken[[fight]]
@@ -373,7 +384,8 @@ server <- function(input, output, session) {
     }) %>% tagList %>% div
   })
 
-  output$ui_char_weapons <- renderUI({
+  # Waffen
+  output$ui_char_weapons_tab2 <- renderUI({
     weapons_NK <- lapply(names(.char()$Stats$Waffen$Nahkampf), \(weapon) {
       item <- .char()$Stats$Waffen$Nahkampf[[weapon]]
       if (is.null(item$PA)) { item$PA <- .char()$Stats$Grundwerte$AW }
@@ -418,42 +430,29 @@ server <- function(input, output, session) {
   output$ui_char_karmal_tab2 <- renderUI({ fct_char_karmal(tag = "fight") })
   output$ui_char_karmal_tab4 <- renderUI({ fct_char_karmal() })
 
-  # Funktion: Textbaustein aus unterschiedlich aufgebauten Detaillisten
-  fct_details2text <- function(name, details) {
-    if (length(details) == 0) {
-      name
-    } else if (length(details) == 2) {
-      paste0(name, " ", as.roman(details[[1]]), ": ", details[[2]])
-    } else if (is.numeric(details[[1]])) {
-      paste0(name, " ", as.roman(details[[1]]))
-    } else {
-      paste0(name, ": ", details[[1]])
-    }
-  }
-
   # Sonderfertigkeiten
-  output$ui_char_abilities <- renderUI({
+  output$ui_char_abilities_tab2 <- renderUI({
     lapply(names(.char()$Sonderfertigkeiten), \(item) {
       fct_details2text(item, .char()$Sonderfertigkeiten[[item]])
     }) %>% tagList
   })
 
   # Vorteile
-  output$ui_char_advantages <- renderUI({
+  output$ui_char_advantages_tab1 <- renderUI({
     lapply(names(.char()$Vorteile), \(item) {
       fct_details2text(item, .char()$Vorteile[[item]])
     }) %>% tagList
   })
 
   # Nachteile
-  output$ui_char_disadvantages <- renderUI({
+  output$ui_char_disadvantages_tab1 <- renderUI({
     lapply(names(.char()$Nachteile), \(item) {
       fct_details2text(item, .char()$Nachteile[[item]])
     }) %>% tagList
   })
 
   # Sonderregeln
-  output$ui_char_rules <- renderUI({
+  output$ui_char_rules_tab1 <- renderUI({
     lapply(names(.char()$Sonderregeln), \(item) {
       div(class = "binder-specialrules",
         h5(item),

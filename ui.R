@@ -31,63 +31,63 @@ ui <- dashboardPage(
               id = "tabset_char",
               width = NULL,
               tabPanel("Steckbrief",
-                uiOutput("gallery_character", class = "binder-gallery"),
+                uiOutput("ui_char_gallery_tab1", class = "binder-gallery"),
                 h2(textOutput("txt_char_name_tab1")),
                 div(class = "binder-soziobox",
-                    textOutput("txt_char_sozio")
+                    textOutput("txt_char_sozio_tab1")
                 ),
                 div(class = "binder-tagbox",
-                  uiOutput("ui_char_tags")
+                  uiOutput("ui_char_tags_tab1")
                 ),
-                textOutput("txt_char_desc"),
+                textOutput("txt_char_desc_tab1"),
                 conditionalPanel(
                   condition = "output.cond_char_hasAppearance == true",
                   h3("Erscheinung"),
-                  uiOutput("ui_char_appearance")
+                  uiOutput("ui_char_appearance_tab1")
                 ),
-                div(em(textOutput("txt_char_languages"))),
+                div(em(textOutput("txt_char_languages_tab1"))),
                 conditionalPanel(
                   condition = "output.cond_char_hasAnySpecial == true",
                   h3("Besonderes"),
                   conditionalPanel(
                     condition = "output.cond_char_hasAdvantages == true",
                     h4("Vorteile"),
-                    uiOutput("ui_char_advantages")
+                    uiOutput("ui_char_advantages_tab1")
                   ),
                   conditionalPanel(
                     condition = "output.cond_char_hasDisadvantages == true",
                     h4("Nachteile"),
-                    uiOutput("ui_char_disadvantages")
+                    uiOutput("ui_char_disadvantages_tab1")
                   ),
                   conditionalPanel(
                     condition = "output.cond_char_hasRules == true",
                     h4("Sonderregeln"),
-                    uiOutput("ui_char_rules")
+                    uiOutput("ui_char_rules_tab1")
                   )
                 ),
                 conditionalPanel(
                   condition = "output.cond_char_hasCampaigns == true",
                   h3("Kampagnen"),
-                  uiOutput("ui_char_campaigns")
+                  uiOutput("ui_char_campaigns_tab1")
                 )
               ),
               tabPanel(tagList(shiny::icon("shield-virus"), "Kampf"),
-                uiOutput("ui_avatar", class = "binder-gallery"),
+                uiOutput("ui_char_gallery_tab2", class = "binder-gallery"),
                 h2(textOutput("txt_char_name_tab2")),
                 div(class = "binder-soziobox",
                   textOutput("txt_char_sozio_tab2")
                 ),
                 div(class = "binder-tagbox",
-                  uiOutput("ui_char_tags_fight")
+                  uiOutput("ui_char_tags_tab2")
                 ),
                 uiOutput("ui_char_attr_tab2"),
                 uiOutput("ui_char_base_tab2"),
                 h3("Fertigkeiten"),
                 uiOutput("ui_char_skills_tab2"),
                 h4("Kampf"),
-                uiOutput("ui_char_fight"),
+                uiOutput("ui_char_fight_tab2"),
                 h4("Waffen"),
-                uiOutput("ui_char_weapons"),
+                uiOutput("ui_char_weapons_tab2"),
                 h4("Magie"),
                 uiOutput("ui_char_magic_tab2"),
                 h4("Götterwirken"),
