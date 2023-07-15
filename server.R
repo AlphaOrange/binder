@@ -129,6 +129,55 @@ server <- function(input, output, session) {
     }
   }
 
+  # Generate Karmal UI
+  fct_char_karmal <- function(tag = "all") {
+    names_liturgies <- names(.char()$Stats$Götterwirken$Liturgien)
+    if (tag == "fight") { names_liturgies <- names_liturgies %>% intersect(.res$.proc$karmal_fight) }
+    karmal_liturgies <- lapply(names_liturgies, \(action) {
+      details    <- .res$karmal[[action]]
+      value      <- .char()$Stats$Götterwirken$Liturgien[[action]][1] %>% span(class = "binder-value")
+      extensions <- .char()$Stats$Götterwirken$Liturgien[[action]][-1] %>% paste(collapse = ", ")
+      if (extensions != "") { extensions <- paste0("(", extensions, ")") }
+      attributes <- details$attributes %>% lapply(\(attribute) {
+        span(.char()$Stats$Eigenschaften[[attribute]],
+             class = sprintf("binder-attr-small binder-attr-%s", attribute))
+      }) %>% tagList
+      tagList(
+        attributes,
+        value,
+        action,
+        extensions
+      ) %>% div(class = sprintf("binder-karmal binder-karmal-%s", details$type))
+    }) %>% tagList
+
+    karmal_ceremonies <- lapply(names(.char()$Stats$Götterwirken$Zeremonien), \(action) {
+      details    <- .res$karmal[[action]]
+      value      <- .char()$Stats$Götterwirken$Zeremonien[[action]][1] %>% span(class = "binder-value")
+      extensions <- .char()$Stats$Götterwirken$Zeremonien[[action]][-1] %>% paste(collapse = ", ")
+      if (extensions != "") { extensions <- paste0("(", extensions, ")") }
+      attributes <- details$attributes %>% lapply(\(attribute) {
+        span(.char()$Stats$Eigenschaften[[attribute]],
+             class = sprintf("binder-attr-small binder-attr-%s", attribute))
+      }) %>% tagList
+      tagList(
+        attributes,
+        value,
+        action,
+        extensions
+      ) %>% div(class = sprintf("binder-karmal binder-karmal-%s", details$type))
+    }) %>% tagList
+
+    karmal_blessings <- lapply(.char()$Stats$Götterwirken$Segnungen, \(action) {
+      details    <- .res$karmal[[action]]
+      action %>% div(class = sprintf("binder-karmal binder-karmal-%s", details$type))
+    }) %>% tagList
+
+    if (tag == "fight") {
+      div(tagList(karmal_liturgies))
+    } else {
+      div(tagList(karmal_liturgies, karmal_ceremonies, karmal_blessings))
+    }
+  }
 
 
   #### JS Conditions ####
@@ -366,49 +415,8 @@ server <- function(input, output, session) {
   output$ui_char_magic_tab4 <- renderUI({ fct_char_magic() })
 
   # Götterwirken: Liturgien + Segnungen + Zeremonien
-  output$ui_char_karmal <- renderUI({
-
-    karmal_liturgies <- lapply(names(.char()$Stats$Götterwirken$Liturgien), \(action) {
-      details    <- .res$karmal[[action]]
-      value      <- .char()$Stats$Götterwirken$Liturgien[[action]][1] %>% span(class = "binder-value")
-      extensions <- .char()$Stats$Götterwirken$Liturgien[[action]][-1] %>% paste(collapse = ", ")
-      if (extensions != "") { extensions <- paste0("(", extensions, ")") }
-      attributes <- details$attributes %>% lapply(\(attribute) {
-        span(.char()$Stats$Eigenschaften[[attribute]],
-             class = sprintf("binder-attr-small binder-attr-%s", attribute))
-      }) %>% tagList
-      tagList(
-        attributes,
-        value,
-        action,
-        extensions
-      ) %>% div(class = sprintf("binder-karmal binder-karmal-%s", details$type))
-    }) %>% tagList
-
-    karmal_ceremonies <- lapply(names(.char()$Stats$Götterwirken$Zeremonien), \(action) {
-      details    <- .res$karmal[[action]]
-      value      <- .char()$Stats$Götterwirken$Zeremonien[[action]][1] %>% span(class = "binder-value")
-      extensions <- .char()$Stats$Götterwirken$Zeremonien[[action]][-1] %>% paste(collapse = ", ")
-      if (extensions != "") { extensions <- paste0("(", extensions, ")") }
-      attributes <- details$attributes %>% lapply(\(attribute) {
-        span(.char()$Stats$Eigenschaften[[attribute]],
-             class = sprintf("binder-attr-small binder-attr-%s", attribute))
-      }) %>% tagList
-      tagList(
-        attributes,
-        value,
-        action,
-        extensions
-      ) %>% div(class = sprintf("binder-karmal binder-karmal-%s", details$type))
-    }) %>% tagList
-
-    karmal_blessings <- lapply(.char()$Stats$Götterwirken$Segnungen, \(action) {
-      details    <- .res$karmal[[action]]
-      action %>% div(class = sprintf("binder-karmal binder-karmal-%s", details$type))
-    }) %>% tagList
-
-    div(tagList(karmal_liturgies, karmal_ceremonies, karmal_blessings))
-  })
+  output$ui_char_karmal_tab2 <- renderUI({ fct_char_karmal(tag = "fight") })
+  output$ui_char_karmal_tab4 <- renderUI({ fct_char_karmal() })
 
   # Funktion: Textbaustein aus unterschiedlich aufgebauten Detaillisten
   fct_details2text <- function(name, details) {
