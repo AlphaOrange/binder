@@ -1,9 +1,4 @@
 {
-  "Nebelschwaden": {
-    "type": "ceremony",
-    "tags": [],
-    "attributes": ["IN", "CH", "KO"]
-  },
   "Unterwasseratmung": {
     "type": "liturgy",
     "tags": [],
@@ -13,8 +8,5 @@
     "type": "liturgy",
     "tags": ["fight"],
     "attributes": ["MU", "CH", "KO"]
-  },
-  "Eidsegen": {
-    "type": "blessing"
   }
 }

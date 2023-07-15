@@ -1,9 +1,4 @@
 {
-  "Applicatus": {
-    "type": "ritual",
-    "tags": [],
-    "attributes": ["KL", "IN", "FF"]
-  },
   "Aquafaxius": {
     "type": "spell",
     "tags": ["fight"],
@@ -13,11 +8,6 @@
     "type": "spell",
     "tags": ["fight"],
     "attributes": ["MU", "IN", "KK"]
-  },
-  "Caldofrigo": {
-    "type": "ritual",
-    "tags": [],
-    "attributes": ["IN", "CH", "KO"]
   },
   "Debilitatio": {
     "type": "spell",
@@ -43,11 +33,6 @@
     "type": "spell",
     "tags": [],
     "attributes": ["MU", "KL", "CH"]
-  },
-  "Hartes schmelze": {
-    "type": "ritual",
-    "tags": [],
-    "attributes": ["MU", "IN", "KO"]
   },
   "Ignifaxius": {
     "type": "spell",
@@ -88,25 +73,5 @@
     "type": "spell",
     "tags": ["fight"],
     "attributes": ["MU", "CH", "KO"]
-  },
-  "Xenographus": {
-    "type": "ritual",
-    "tags": [],
-    "attributes": ["MU", "KL", "IN"]
-  },
-  "Feenfüße": {
-    "type": "trick"
-  },
-  "Feuerfinger": {
-    "type": "trick"
-  },
-  "Glücksgriff": {
-    "type": "trick"
-  },
-  "Leselampe": {
-    "type": "trick"
-  },
-  "Zauberfeder": {
-    "type": "trick"
   }
 }

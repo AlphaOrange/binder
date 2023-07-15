@@ -1,0 +1,22 @@
+{
+  "Applicatus": {
+    "type": "ritual",
+    "tags": [],
+    "attributes": ["KL", "IN", "FF"]
+  },
+  "Caldofrigo": {
+    "type": "ritual",
+    "tags": [],
+    "attributes": ["IN", "CH", "KO"]
+  },
+  "Hartes schmelze": {
+    "type": "ritual",
+    "tags": [],
+    "attributes": ["MU", "IN", "KO"]
+  },
+  "Xenographus": {
+    "type": "ritual",
+    "tags": [],
+    "attributes": ["MU", "KL", "IN"]
+  }
+}
