@@ -1,14 +1,17 @@
 {
   "Nebelschwaden": {
     "type": "ceremony",
+    "tags": [],
     "attributes": ["IN", "CH", "KO"]
   },
   "Unterwasseratmung": {
     "type": "liturgy",
+    "tags": [],
     "attributes": ["MU", "IN", "KO"]
   },
   "Windhose": {
     "type": "liturgy",
+    "tags": ["fight"],
     "attributes": ["MU", "CH", "KO"]
   },
   "Eidsegen": {
