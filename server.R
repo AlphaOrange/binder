@@ -470,5 +470,13 @@ server <- function(input, output, session) {
       )
     }) %>% tagList
   })
+  output$ui_char_rules_tab2 <- renderUI({
+    lapply(names(.char()$Sonderregeln), \(item) {
+      div(class = "binder-specialrules",
+          h5(item),
+          p(.char()$Sonderregeln[[item]])
+      )
+    }) %>% tagList
+  })
 
 }
