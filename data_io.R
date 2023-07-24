@@ -20,6 +20,8 @@ load_resources <- function() {
   # Processing
   res$.proc$magic_fight  <- res$magic  %>% list.filter("fight" %in% tags) %>% names
   res$.proc$karmal_fight <- res$karmal %>% list.filter("fight" %in% tags) %>% names
+  res$.proc$advantages_fight <- res$advantages %>% list.filter("fight" %in% tags) %>% names
+  res$.proc$disadvantages_fight <- res$disadvantages %>% list.filter("fight" %in% tags) %>% names
 
   res
 

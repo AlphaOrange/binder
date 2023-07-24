@@ -179,6 +179,22 @@ server <- function(input, output, session) {
     }
   }
 
+  # Generate advantages/disadvantages UI
+  fct_char_advantages <- function(tag = "all") {
+    names_advantages <- names(.char()$Vorteile)
+    if (tag == "fight") { names_advantages <- names_advantages %>% intersect(.res$.proc$advantages_fight) }
+    lapply(names_advantages, \(item) {
+      fct_details2text(item, .char()$Vorteile[[item]])
+    }) %>% tagList
+  }
+  fct_char_disadvantages <- function(tag = "all") {
+    names_disadvantages <- names(.char()$Nachteile)
+    if (tag == "fight") { names_disadvantages <- names_disadvantages %>% intersect(.res$.proc$disadvantages_fight) }
+    lapply(names_disadvantages, \(item) {
+      fct_details2text(item, .char()$Nachteile[[item]])
+    }) %>% tagList
+  }
+
   # Funktion: Textbaustein aus unterschiedlich aufgebauten Detaillisten
   fct_details2text <- function(name, details) {
     if (length(details) == 0) {
@@ -438,18 +454,12 @@ server <- function(input, output, session) {
   })
 
   # Vorteile
-  output$ui_char_advantages_tab1 <- renderUI({
-    lapply(names(.char()$Vorteile), \(item) {
-      fct_details2text(item, .char()$Vorteile[[item]])
-    }) %>% tagList
-  })
+  output$ui_char_advantages_tab1 <- renderUI({ fct_char_advantages() })
+  output$ui_char_advantages_tab2 <- renderUI({ fct_char_advantages(tag = "fight") })
 
   # Nachteile
-  output$ui_char_disadvantages_tab1 <- renderUI({
-    lapply(names(.char()$Nachteile), \(item) {
-      fct_details2text(item, .char()$Nachteile[[item]])
-    }) %>% tagList
-  })
+  output$ui_char_disadvantages_tab1 <- renderUI({ fct_char_disadvantages() })
+  output$ui_char_disadvantages_tab2 <- renderUI({ fct_char_disadvantages(tag = "fight") })
 
   # Sonderregeln
   output$ui_char_rules_tab1 <- renderUI({

@@ -179,6 +179,16 @@ binder_check_ids <- function() {
 #### Check for missing resources ####
 binder_check_missing_resources <- function() {
 
+  # Nested Function: display results
+  .binder_check_result <- function(missing_res) {
+    if (length(missing_res)) {
+      cat(bold(red("FAIL")) %+% "\n--> Missing Resources: ")
+      cat(paste(missing_res, collapse = ", "), "\n")
+    } else {
+      cat(bold("CHECK\n"))
+    }
+  }
+
   # load all data
   data <- load_data()
   res  <- load_resources()
@@ -193,12 +203,7 @@ binder_check_missing_resources <- function() {
     )
   }) %>% unlist %>% unique
   missing_magic <- res_magic %>% setdiff(names(res$magic))
-  if (length(missing_magic)) {
-    cat(bold(red("FAIL")) %+% "\nMissing Resources: ")
-    cat(paste(missing_magic, collapse = ", "), "\n")
-  } else {
-    cat(bold("CHECK\n"))
-  }
+  .binder_check_result(missing_magic)
 
   # check karmal resources
   cat("Karmal-Ressourcen: ")
@@ -210,13 +215,18 @@ binder_check_missing_resources <- function() {
     )
   }) %>% unlist %>% unique
   missing_karmal <- res_karmal %>% setdiff(names(res$karmal))
-  if (length(missing_karmal)) {
-    cat(bold(red("FAIL")) %+% "\nMissing Resources: ")
-    cat(paste(missing_karmal, collapse = ", "), "\n")
-  } else {
-    cat(bold("CHECK\n"))
-  }
+  .binder_check_result(missing_karmal)
 
+  # check advantages/disadvantages resources
+  cat("Vorteile-Ressourcen: ")
+  res_advantages    <- list.mapv(data$character, names(Vorteile))  %>% unlist %>% unique
+  res_disadvantages <- list.mapv(data$character, names(Nachteile)) %>% unlist %>% unique
+  missing_advantages    <- res_advantages    %>% setdiff(names(res$advantages))
+  missing_disadvantages <- res_disadvantages %>% setdiff(names(res$disadvantages))
+  cat("Vorteile-Ressourcen: ")
+  .binder_check_result(missing_advantages)
+  cat("Nachteile-Ressourcen: ")
+  .binder_check_result(missing_disadvantages)
 }
 # binder_check_missing_resources()
 
