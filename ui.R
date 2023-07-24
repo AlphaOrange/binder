@@ -88,6 +88,8 @@ ui <- dashboardPage(
                 uiOutput("ui_char_fight_tab2"),
                 h4("Waffen"),
                 uiOutput("ui_char_weapons_tab2"),
+                h4("Sonderfertigkeiten"),
+                uiOutput("ui_char_abilities_tab2"),
                 conditionalPanel(
                   condition = "output.cond_char_hasRules == true",
                   h4("Sonderregeln"),

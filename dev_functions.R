@@ -218,7 +218,6 @@ binder_check_missing_resources <- function() {
   .binder_check_result(missing_karmal)
 
   # check advantages/disadvantages resources
-  cat("Vorteile-Ressourcen: ")
   res_advantages    <- list.mapv(data$character, names(Vorteile))  %>% unlist %>% unique
   res_disadvantages <- list.mapv(data$character, names(Nachteile)) %>% unlist %>% unique
   missing_advantages    <- res_advantages    %>% setdiff(names(res$advantages))
@@ -227,6 +226,13 @@ binder_check_missing_resources <- function() {
   .binder_check_result(missing_advantages)
   cat("Nachteile-Ressourcen: ")
   .binder_check_result(missing_disadvantages)
+
+  # check advantages/disadvantages resources
+  res_abilities <- list.mapv(data$character, names(Sonderfertigkeiten)) %>% unlist %>% unique
+  missing_abilities <- res_abilities %>% setdiff(names(res$abilities))
+  cat("Sonderfertigkeiten-Ressourcen: ")
+  .binder_check_result(missing_abilities)
+
 }
 # binder_check_missing_resources()
 

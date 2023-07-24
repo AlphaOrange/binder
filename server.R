@@ -195,6 +195,15 @@ server <- function(input, output, session) {
     }) %>% tagList
   }
 
+  # Generate abilities UI
+  fct_char_abilities <- function(tag = "all") {
+    names_abilities <- names(.char()$Sonderfertigkeiten)
+    if (tag == "fight") { names_abilities <- names_abilities %>% intersect(.res$.proc$abilities_fight) }
+    lapply(names_abilities, \(item) {
+      fct_details2text(item, .char()$Sonderfertigkeiten[[item]])
+    }) %>% tagList
+  }
+
   # Funktion: Textbaustein aus unterschiedlich aufgebauten Detaillisten
   fct_details2text <- function(name, details) {
     if (length(details) == 0) {
@@ -447,11 +456,7 @@ server <- function(input, output, session) {
   output$ui_char_karmal_tab4 <- renderUI({ fct_char_karmal() })
 
   # Sonderfertigkeiten
-  output$ui_char_abilities_tab2 <- renderUI({
-    lapply(names(.char()$Sonderfertigkeiten), \(item) {
-      fct_details2text(item, .char()$Sonderfertigkeiten[[item]])
-    }) %>% tagList
-  })
+  output$ui_char_abilities_tab2 <- renderUI({ fct_char_abilities(tag = "fight") })
 
   # Vorteile
   output$ui_char_advantages_tab1 <- renderUI({ fct_char_advantages() })
